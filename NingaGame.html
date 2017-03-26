@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Ninga Game &copy; OAMK</title>
+<!--
+
+   2017-03-25 File created.
+
+-->
+
+<script>
+
+class Sprite
+{
+   constructor( given_sprite_image,  // An Image() object created by caller.
+                number_of_horizontal_frames,
+                given_sprite_center_point_x,   // x-position on canvas
+                given_sprite_center_point_y )  // y-position on canvas
+   {
+      this.sprite_image = given_sprite_image ;
+      this.number_of_frames = number_of_horizontal_frames ;
+
+      this.sprite_center_point_x = given_sprite_center_point_x ;
+      this.sprite_center_point_y = given_sprite_center_point_y ;
+
+      this.current_frame_index = 0 ;
+
+      this.frame_width = this.sprite_image.width / number_of_horizontal_frames ;
+
+      this.frame_height = this.sprite_image.height / 4 ;
+
+   }
+
+   draw( context )
+   {
+         //  You can think that the parameters below first specify an image,
+         //  then they specify a rectangle within the image, and then they
+         //  specify a rectangle on the canvas. Image data is copied from the
+         //  rectangle inside the image to the rectangle on the canvas.
+
+         context.drawImage( this.sprite_image,
+
+                            this.frame_width * this.current_frame_index, 128,
+                            this.frame_width, this.frame_height,
+
+                            this.sprite_center_point_x - this.frame_width / 2,
+                            this.sprite_center_point_y - this.frame_height / 2,
+                            this.frame_width, this.frame_height ) ;
+
+         this.current_frame_index ++ ;
+
+         if ( this.current_frame_index >= this.number_of_frames )
+         {
+       		this.current_frame_index = 0 ;
+         }
+		console.log("drawing");
+   }
+}  // End of class Sprite.
+	
+//The NINJA CLASS is an object of a player running
+//horizontally towards the flying knives.
+	/*
+class Ninja 
+{
+	constructor ( ninja_starting_position_x,
+					  ninja_ground_height_y,
+					  ninja_width, ninja_height,
+					  ninja_sprite )
+	
+	this.ninja_position_x = ninja_starting_position_x ;
+	this.ninja_ground_height_y = ninja_ground_height_y ;
+	this.ninja_width = ninja_width ;
+	this.ninja_height = ninja_height ;
+	this.ninja_sprite = ninja_sprite ;
+	
+	
+}*/
+
+var sprite_ninja = new Image();
+sprite_ninja.src = "sprites/running_man_sprite.png";
+
+var ninja = new Sprite( sprite_ninja, 9,
+						  20, 300);
+function draw_on_canvas()
+{
+	var canvas = document.getElementById("game_canvas");
+	var context = canvas.getContext("2d") ;
+	context.fillStyle = "Khaki", 0.9;
+	context.fillRect(0, 0, canvas.width, canvas.height);
+	
+	ninja.draw( context ) ;
+	
+	setTimeout( draw_on_canvas(), 50) ;
+	
+}
+	// 256 - height  of sprite
+	// 288 - width of sprite
+	// we need those between height 128-192
+
+</script>
+	
+	
+<style>
+	.centered {
+		width:  800px;
+      height: 600px;
+      margin: 30px auto;    /* top and bottom margins are 30p;
+                               right and left margins are automatic */
+      border: 1px solid black;
+	}
+</style>
+
+</head>
+<body onload = draw_on_canvas()>
+	<div class="centered">
+	<canvas id="game_canvas" height="600" width="800">
+	</canvas>
+	</div>
+</body>
