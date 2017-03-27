@@ -51,11 +51,18 @@ function on_key_down( event )
 	if (event.keyCode in map) 
 	{
       map[event.keyCode] = true;
+		
 		if (map[39] && map[38])
 		{
 			player_ninja.ninja_position_x +=5 ;
 			player_ninja.ninja_position_y -=5 ;
 			console.log("fuck it") ;
+		}		
+		else if (map[37] && map[38])
+		{
+			player_ninja.ninja_position_x -=5 ;
+			player_ninja.ninja_position_y -=5 ;
+			console.log("fuck that") ;
 		}
 		else if (map[37])
 			{
