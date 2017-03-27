@@ -1,55 +1,52 @@
-var player_ninja 
-
-function setup() 
-{
-	createCanvas(800, 600);
-	player_ninja = new Ninja() ;
-}
-
-function keyPressed()
-{
-	if (keyCode === UP_ARROW)
-	{
-		player_ninja.dir( 0, -1) ;
-	}
-	else if (keyCode === DOWN_ARROW)
-	{
-		player_ninja.dir( 0, 1) ;
-	}	
-	else if (keyCode === LEFT_ARROW)
-	{
-		player_ninja.dir( -1, 0) ;
-	}	
-	else if (keyCode === RIGHT_ARROW)
-	{
-		player_ninja.dir( 1, 0) ;
-	}
-}
-
-function draw() 
-{
-	background(51) ;
-	player_ninja.update() ;
-	player_ninja.show() ;
-}
 
 function Ninja()
 {
-	this.x = 0  ;
-	this.y = 0  ;
+	this.height = 60 ;
+	this.width = 40 ;
+	this.x = 20  ;
+	this.y = (7/8) * 600 - this.width ;
 	this.xspeed = 1 ;
 	this.yspeed = 0 ;
 	
+	//creating sprite
+	this.ninja_sprite = createSprite(this.x, this.y, 32, 64 ) ;
+	this.ninja_sprite.addAnimation('run', player_run) ;
+	this.ninja_sprite.addAnimation('stand', player_stand) ;
+	
 	this.update = function()
 	{
-		this.x = this.x + this.xspeed ;
-		this.y = this.y + this.yspeed ;
+		this.move() ;
+		
+		if (this.y + this.height < INITIAL_Y )
+			{
+				this.y += GRAVITY*GRAVITY ;
+			}
 	}
 	
 	this.show = function()
 	{
 		fill(255) ;
-		rect(this.x, this.y, 10, 10) ;
+		rect(this.x, this.y, this.width, this.height) ;
+	}
+	
+	this.move = function()
+	{
+	if (keyIsDown(UP_ARROW))
+		{
+			console.log("doing") ;
+			this.y -= 5 ;
+		}
+		if (keyIsDown(DOWN_ARROW))
+		{
+			this.y += 5 ;
+		}	
+		if (keyIsDown(LEFT_ARROW))
+		{
+			this.x -= 5 ;
+		}	
+		if (keyIsDown(RIGHT_ARROW))
+		{
+			this.x += 5 ;
+		}
 	}
 }
-
