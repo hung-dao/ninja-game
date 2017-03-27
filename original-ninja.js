@@ -53,29 +53,29 @@ function on_key_down( event )
       map[event.keyCode] = true;
 		if (map[39] && map[38])
 		{
-			player_ninja.ninja_position_x +=5 ;
-			player_ninja.ninja_position_y -=5 ;
+			player_ninja.ninja_position_x +=2.5 ;
+			player_ninja.ninja_position_y -=2.5 ;
 			console.log("fuck it") ;
 		}
 		else if (map[37])
 			{
-				player_ninja.ninja_position_x -=5 ;
+				player_ninja.ninja_position_x -=3 ;
 				console.log("LEFT!!!") ;
 			}
 		else if (map[39])
 			{
-				player_ninja.ninja_position_x +=5 ;
+				player_ninja.ninja_position_x +=3 ;
 				console.log("AAA") ;
 			}
 		else if (map[38])
 			{
-				player_ninja.ninja_position_y -=5 ;
+				player_ninja.ninja_position_y -=2 ;
 			}
 		else if (map[40])
 			{
 				if ( player_ninja.ninja_position_y + player_ninja.ninja_height < LEVEL_OF_GROUND )
 				{
-					player_ninja.ninja_position_y +=5 ;
+					player_ninja.ninja_position_y +=3 ;
 			   }
 			}
 	}
