@@ -1,7 +1,8 @@
 var player_ninja ;
 var coins = [] ;
 var ninja_image ;
-/*var player_sprite_sheet ;
+/*
+var player_sprite_sheet ;
 var player_frames = [
   {"name":"player_run01", "frame":{"x":0,   "y": 128, "width": 32, "height": 64}},
   {"name":"player_run02", "frame":{"x":32,  "y": 128, "width": 32, "height": 64}},
@@ -12,7 +13,8 @@ var player_frames = [
   {"name":"player_run07", "frame":{"x":192, "y": 128, "width": 32, "height": 64}},
   {"name":"player_run08", "frame":{"x":224, "y": 128, "width": 32, "height": 64}},
   {"name":"player_run09", "frame":{"x":256, "y": 128, "width": 32, "height": 64}}
-];*/
+];
+*/
 
 var knives = [] ;
 
@@ -29,7 +31,7 @@ function setup()
    player_ninja.sprite.addAnimation('run', player_ninja.player_run);
    player_ninja.sprite.addAnimation('stand', player_ninja.player_stand);
 	*/
-	for (var i = 0; i < 4; i ++)
+	for (var i = 0; i < 8; i ++)
 		{
 			knives.push(new Enemy) ;
 		}
