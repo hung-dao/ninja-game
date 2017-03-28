@@ -6,7 +6,7 @@ function Ninja()
 	this.y = (7/8) * 600 - this.height ;
 	this.xspeed = 1 ;
 	this.yspeed = 0 ;
-	
+	/*
 	this.sprite = createSprite(this.x, this.y, this.width, this.height);
 	//this.sprite.shapeColor = color(255);
 	player_sprite_sheet = loadSpriteSheet('sprites/running_man_sprite.png', player_frames);
@@ -14,12 +14,12 @@ function Ninja()
    // An animation with a single frame for standing
    this.player_stand = loadAnimation(new SpriteSheet('sprites/running_man_sprite.png',
    [{"name":"player_stand", "frame":{"x":0, "y": 0, "width": 32, "height": 64}}]));
-	
+	*/
 	this.update = function()
 	{
 		this.move() ;
 		
-		this.sprite.changeAnimai
+		//this.sprite.changeAnima
 		
 		if (this.y + this.height < INITIAL_Y )
 			{
@@ -37,7 +37,7 @@ function Ninja()
 	this.show = function()
 	{
 		fill(255) ;
-		drawSprites();
+		//drawSprites();
 		rect(this.x, this.y, this.width, this.height) ;
 	}
 	
@@ -57,17 +57,17 @@ function Ninja()
 		}
 		if (keyIsDown(LEFT_ARROW))
 		{
-    		this.sprite.changeAnimation('run');
+    		/*this.sprite.changeAnimation('run');
     		// flip horizontally
-    		this.sprite.mirrorX(-1);
+    		this.sprite.mirrorX(-1);*/
     		// move left
     		this.x -= 5 ;
 		}				
 		if (keyIsDown(RIGHT_ARROW))
 		{
-			this.sprite.changeAnimation('run');
+			/*this.sprite.changeAnimation('run');
     		// flip horizontally
-    		this.sprite.mirrorX(1);
+    		this.sprite.mirrorX(1);*/
     		// move right
 			this.x += 5 ;
 		}
