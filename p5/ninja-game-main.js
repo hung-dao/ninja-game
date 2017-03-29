@@ -33,9 +33,12 @@ function setup()
 	*/
 	for (var i = 0; i < 8; i ++)
 		{
-			knives.push(new Enemy) ;
+			knives.push(new Enemy()) ;
 		}
 }
+
+
+
 
 function draw() 
 {
@@ -46,10 +49,19 @@ function draw()
 		{
 			knives[i].move() ;
 			knives[i].show() ;
-			if (knives[i].x < 0)
+            if (knives[i].crash(player_ninja))
+                {
+                    noLoop(); //end the game
+                }
+			
+            if (knives[i].x < 0)
 				{
 					knives.splice(i, 1) ;
 					knives.push(new Enemy()) ;
 				}
 		}
+    
+    
+    
 }
+
