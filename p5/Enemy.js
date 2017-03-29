@@ -2,8 +2,9 @@ function Enemy()
 {
 	this.x = random (800, 1600) ;
 	this.y = random(0, 525) ;
-    this.width = 13;
-    this.height = 13;
+   this.width = 13;
+   this.height = 13;
+	this.damage = 5 ;
 	
 	this.show = function()
 	{
@@ -14,19 +15,24 @@ function Enemy()
 	
 	this.move = function()
 	{
-		this.x -= 7 ;
-    }
+		this.x -= 5 ;
+   }
     
-    this.crash = function(obj)
-    {
-        if (this.x + this.width >= obj.x &&    // r1 right edge past r2 left
-      this.x <= obj.x + obj.width &&    // r1 left edge past r2 right
-      this.y + this.height >= obj.y &&    // r1 top edge past r2 bottom
-      this.y <= obj.y + obj.height) // r1 bottom edge past r2 top
-        {
-            return true;
-        }
-        else {return false;}
+   this.crash = function(obj)
+   {
+		if (this.x + this.width >= obj.x &&    // r1 right edge past r2 left
+      	 this.x <= obj.x + obj.width &&    // r1 left edge past r2 right
+      	 this.y + this.height >= obj.y &&    // r1 top edge past r2 bottom
+      	 this.y <= obj.y + obj.height) // r1 bottom edge past r2 top
+		{
+			obj.health -= this.damage ;
+			return true ;
+		}
+		else
+		{
+			return false ;
+		}
+ 
         
-    }
+	}
 }

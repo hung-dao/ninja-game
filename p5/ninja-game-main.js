@@ -1,3 +1,4 @@
+var health_text ;
 var player_ninja ;
 var coins = [] ;
 var ninja_image ;
@@ -24,7 +25,8 @@ var GRAVITY = 1.5 ;
 
 function setup() 
 {
-	createCanvas(800, 600);
+	var canvas = createCanvas(800, 600);
+	//canvas.parent('centered') ;
 	player_ninja = new Ninja() ;
 	/*
 	player_ninja.sprite = createSprite(player_ninja.x, player_ninja.y, player_ninja.width, player_ninja.height);
@@ -35,10 +37,9 @@ function setup()
 		{
 			knives.push(new Enemy()) ;
 		}
+	
+	health_text = createP("Health:" + player_ninja.health) ;
 }
-
-
-
 
 function draw() 
 {
@@ -46,22 +47,30 @@ function draw()
 	player_ninja.update() ;
 	player_ninja.show() ;
 	for (var i = 0; i < knives.length; i ++)
-		{
-			knives[i].move() ;
-			knives[i].show() ;
-            if (knives[i].crash(player_ninja))
-                {
-                    noLoop(); //end the game
-                }
+	{
+		knives[i].move() ;
+		knives[i].show() ;
+   	if (knives[i].crash(player_ninja))
+      {
+			knives.splice( i, 1 ) ;
+			health_text.html("Health:" + player_ninja.health);
+			console.log(player_ninja.health);
 			
-            if (knives[i].x < 0)
-				{
-					knives.splice(i, 1) ;
-					knives.push(new Enemy()) ;
-				}
+      }
+		if (player_ninja.health == 0)
+		{
+			noLoop() ;
 		}
-    
-    
-    
+			
+      if (knives[i].x < 0)
+		{
+			knives.splice(i, 1) ;
+			knives.push(new Enemy()) ;
+		}
+		if (knives.length <= 8)
+		{
+			knives.push(new Enemy()) ;
+		}
+	}    
 }
 

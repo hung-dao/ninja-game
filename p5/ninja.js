@@ -6,6 +6,8 @@ function Ninja()
 	this.y = (7/8) * 600 - this.height ;
 	this.xspeed = 1 ;
 	this.yspeed = 0 ;
+	this.health = 100 ;
+	
 	/*
 	this.sprite = createSprite(this.x, this.y, this.width, this.height);
 	//this.sprite.shapeColor = color(255);
@@ -15,6 +17,7 @@ function Ninja()
    this.player_stand = loadAnimation(new SpriteSheet('sprites/running_man_sprite.png',
    [{"name":"player_stand", "frame":{"x":0, "y": 0, "width": 32, "height": 64}}]));
 	*/
+	
 	this.update = function()
 	{
 		this.move() ;
