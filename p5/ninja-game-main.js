@@ -5,7 +5,6 @@ var coins = [] ;
 var ninja_image ;
 var startGame = false;
 
-
 /*
 var player_sprite_sheet ;
 var player_frames = [
@@ -23,19 +22,14 @@ var player_frames = [
 
 var knives = [] ;
 var kunai = [] ;
-
 var INITIAL_Y = (7/8) * 600 + 40 ;
-
 var GRAVITY = 1.1 ;
 
 function setup()
 {
 	//The following line is for loading image
-	bg = loadImage("ninja.gif");
-	/////
-
+	bg = loadImage("ninja.gif") ;
 	var canvas = createCanvas(800, 600);
-	//canvas.parent('centered') ;
 	player_ninja = new Ninja() ;
 	/*
 	player_ninja.sprite = createSprite(player_ninja.x, player_ninja.y, player_ninja.width, player_ninja.height);
@@ -43,13 +37,9 @@ function setup()
    player_ninja.sprite.addAnimation('stand', player_ninja.player_stand);
 	*/
 	for (var i = 0; i < 8; i ++)
-		{
-			knives.push(new Shuriken()) ;
-		}
-	var kunai ;
-
-	
-   
+	{
+		knives.push(new Shuriken()) ;
+	}	
 }
 
 function draw()
@@ -82,37 +72,24 @@ function draw()
 			{
 				knives[i].move() ;
 				knives[i].show() ;
-<<<<<<< HEAD
 	      
-                score_text = "Score: " + Math.floor(player_ninja.score);
+            score_text = "Score: " + Math.floor(player_ninja.score);
                 
-                textSize(14);
-                text(score_text,17,17);
+            textSize(14);
+            text(score_text,17,17);
 	      
 	   		if (knives[i].crash(player_ninja))
-	  		{
+	  			{
 					knives.splice( i, 1 ) ;
-					
-	      }
-				if (player_ninja.health <= 0) //if health is less than or equal to zero SHOW GAME OVER AND RESTART SCREEN
-				{
-					background(bg);
-			  	noStroke();
-			  	fill(0);
-			  	textAlign(CENTER);
-			  	textSize(30);
-			  	text("GAME OVER!! \n PRESS ENTER TO PLAY", 400, 550);
-					//Stop looping after SHOW GAME OVER AND RESTART SCREEN
-					noLoop() ;
-=======
-	      	score_text.html("Score: " + Math.floor(player_ninja.score));
+	      	}
+	      	//score_text.html("Score: " + Math.floor(player_ninja.score));
 	      	console.log(player_ninja.score);
 	   		if (knives[i].crash(player_ninja))
 	  			{
 						knives.splice( i, 1 ) ;
 						health_text.html("Health: " + player_ninja.health);
 						console.log(player_ninja.health);
->>>>>>> master
+
 				}
 					
 				if (knives[i].x < 0)
@@ -120,11 +97,14 @@ function draw()
 					knives.splice(i, 1) ;
 					knives.push(new Shuriken()) ;
 				}
-				if (knives.length <= 8)
+				
+				if (knives.length < 8)
 				{
 					knives.push(new Shuriken()) ;
 				}
-	      }
+				
+			}
+
 			if (player_ninja.health <= 0) //if health is less than or equal to zero SHOW GAME OVER AND RESTART SCREEN
 			{
 				background(bg);
@@ -145,5 +125,5 @@ function keyPressed() {
 		player_ninja.health = 100;
 		loop();
   }
-	return false;
 }
+
