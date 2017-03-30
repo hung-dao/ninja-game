@@ -51,67 +51,80 @@ function setup()
 
 function draw()
 {
-	//Check for key to the start game
 	if(startGame == false){
-				background(bg);
-		  	noStroke();
-		  	fill(0);
-		  	textAlign(CENTER);
-		  	textSize(50);
-		  	text("PRESS ANY KEY TO PLAY", 400, 550);
-		    	if (keyIsPressed){
-		            startGame = true;
-		    	}
-
-	 }
+		showStartScreen();
+  }
 	else{
-			background(51) ;
-			player_ninja.update() ;
-			player_ninja.show() ;
-		   player_ninja.score += 0.1;
-			for (var i = 0; i < knives.length; i ++)
-			{
-				knives[i].move() ;
-				knives[i].show() ;
-	      score_text.html("Score: " + Math.floor(player_ninja.score));
-	      console.log(player_ninja.score);
-	   		if (knives[i].crash(player_ninja))
-	  		{
-					knives.splice( i, 1 ) ;
-					health_text.html("Health: " + player_ninja.health);
-					console.log(player_ninja.health);
-
-	      }
-				if (player_ninja.health <= 0) //if health is less than or equal to zero SHOW GAME OVER AND RESTART SCREEN
-				{
-					background(bg);
-			  	noStroke();
-			  	fill(0);
-			  	textAlign(CENTER);
-			  	textSize(30);
-			  	text("GAME OVER!! \n PRESS ENTER TO PLAY", 400, 550);
-					//Stop looping after SHOW GAME OVER AND RESTART SCREEN
-					noLoop() ;
-				}
-
-	      if (knives[i].x < 0)
-				{
-					knives.splice(i, 1) ;
-					knives.push(new Shuriken()) ;
-				}
-				if (knives.length <= 8)
-				{
-					knives.push(new Shuriken()) ;
-				}
-		}
+		showGameScreen();
 	}
 }
 
+
+
+//Start Screen Codes
+function showStartScreen () {
+	background(bg);
+	noStroke();
+	fill(0);
+	textAlign(CENTER);
+	textSize(50);
+	text("PRESS ANY KEY TO PLAY", 400, 550);
+		if (keyIsPressed){
+					startGame = true;
+		}
+}
+
+//Game Screen Codes
+function showGameScreen(){
+	background(51) ;
+	player_ninja.update() ;
+	player_ninja.show() ;
+	 player_ninja.score += 0.1;
+	for (var i = 0; i < knives.length; i ++)
+	{
+		knives[i].move() ;
+		knives[i].show() ;
+		score_text.html("Score: " + Math.floor(player_ninja.score));
+		console.log(player_ninja.score);
+		if (knives[i].crash(player_ninja))
+		{
+			knives.splice( i, 1 ) ;
+			health_text.html("Health: " + player_ninja.health);
+			console.log(player_ninja.health);
+
+		}
+		if (player_ninja.health <= 0) //if health is less than or equal to zero SHOW GAME OVER AND RESTART SCREEN
+		{
+				showRestartScreen();
+		}
+
+		if (knives[i].x < 0)
+		{
+			knives.splice(i, 1) ;
+			knives.push(new Shuriken()) ;
+		}
+		if (knives.length <= 8)
+		{
+			knives.push(new Shuriken()) ;
+		}
+	}
+}
+//Restart Screen Codes
+function showRestartScreen(){
+	background(bg);
+	noStroke();
+	fill(0);
+	textAlign(CENTER);
+	textSize(30);
+	text("GAME OVER!! \n PRESS ENTER TO PLAY", 400, 550);
+	//Stop looping after SHOW GAME OVER AND RESTART SCREEN
+	noLoop() ;
+}
 //Look for ENTER to restart the game
 function keyPressed() {
 	if (keyCode === ENTER) {
 		player_ninja.health = 100;
 		loop();
-  }
+	}
 	return false;
 }
