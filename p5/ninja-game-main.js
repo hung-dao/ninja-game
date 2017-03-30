@@ -1,4 +1,4 @@
-var health_text ;
+var health_text;
 var score_text;
 var player_ninja ;
 var coins = [] ;
@@ -22,6 +22,7 @@ var player_frames = [
 
 var knives = [] ;
 var kunai = [] ;
+
 var INITIAL_Y = (7/8) * 600 + 40 ;
 var GRAVITY = 1.1 ;
 
@@ -72,19 +73,22 @@ function showGameScreen(){
 	background(51) ;
 	player_ninja.update() ;
 	player_ninja.show() ;
-	 player_ninja.score += 0.1;
+	player_ninja.score += 0.1;
+	health_text = "Health: " + player_ninja.health;
+   textSize(14);
+   text(health_text,17,34);
+	score_text = "Score: " + Math.floor(player_ninja.score);
+   textSize(14);
+   text(score_text,17,17);
+  
 	for (var i = 0; i < knives.length; i ++)
 	{
 		knives[i].move() ;
 		knives[i].show() ;
-		score_text.html("Score: " + Math.floor(player_ninja.score));
-		console.log(player_ninja.score);
+		//score_text.html("Score: " + Math.floor(player_ninja.score));
 		if (knives[i].crash(player_ninja))
 		{
 			knives.splice( i, 1 ) ;
-			health_text.html("Health: " + player_ninja.health);
-			console.log(player_ninja.health);
-
 		}
 		if (player_ninja.health <= 0) //if health is less than or equal to zero SHOW GAME OVER AND RESTART SCREEN
 		{
@@ -101,6 +105,7 @@ function showGameScreen(){
 			knives.push(new Shuriken()) ;
 		}
 	}
+	console.log(player_ninja.score) ;
 }
 //Restart Screen Codes
 function showRestartScreen(){
@@ -117,8 +122,8 @@ function showRestartScreen(){
 function keyPressed() {
 	if (keyCode === ENTER) {
 		player_ninja.health = 100;
+		player_ninja.score = 0 ;
 		loop();
   }
-	return false;
 }
 
