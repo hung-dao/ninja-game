@@ -3,6 +3,7 @@ var score_text;
 var player_ninja ;
 var coins = [] ;
 var ninja_image ;
+var startGame = false;
 /*
 var player_sprite_sheet ;
 var player_frames = [
@@ -24,8 +25,9 @@ var INITIAL_Y = (7/8) * 600 ;
 
 var GRAVITY = 1.1 ;
 
-function setup() 
+function setup()
 {
+	bg = loadImage("ninja.gif");
 	var canvas = createCanvas(800, 600);
 	//canvas.parent('centered') ;
 	player_ninja = new Ninja() ;
@@ -38,45 +40,57 @@ function setup()
 		{
 			knives.push(new Enemy()) ;
 		}
-	
+
 	health_text = createP("Health:" + player_ninja.health) ;
     score_text = createP("Score:" + player_ninja.score) ;
 }
 
-function draw() 
+function draw()
 {
-	background(51) ;
-	player_ninja.update() ;
-	player_ninja.show() ;
-	for (var i = 0; i < knives.length; i ++)
-	{
-		knives[i].move() ;
-		knives[i].show() ;
-        player_ninja.score += 0.1;
-        score_text.html("Score: " + Math.floor(player_ninja.score));
-        console.log(player_ninja.score);
-   	if (knives[i].crash(player_ninja))
-      {
-			knives.splice( i, 1 ) ;
-			health_text.html("Health: " + player_ninja.health);
-			console.log(player_ninja.health);
-			
-      }
-		if (player_ninja.health <= 0)
-		{
-			noLoop() ;
-		}
-			
-      if (knives[i].x < 0)
-		{
-			knives.splice(i, 1) ;
-			knives.push(new Enemy()) ;
-		}
-		if (knives.length <= 8)
-		{
-			knives.push(new Enemy()) ;
-            
-		}
-	}    
-}
+	if(startGame == false){
+	  	background(bg);
+	  	noStroke();
+	  	fill(0);
+	  	textAlign(CENTER);
+	  	textSize(50);
+	  	text("PRESS ANY KEY TO PLAY", 400, 550);
+	    	if (keyIsPressed){
+	            startGame = true;
+	    	}
+	 }
+	 else{
+			background(51) ;
+			player_ninja.update() ;
+			player_ninja.show() ;
+			for (var i = 0; i < knives.length; i ++)
+			{
+				knives[i].move() ;
+				knives[i].show() ;
+	      player_ninja.score += 0.1;
+	      score_text.html("Score: " + Math.floor(player_ninja.score));
+	      console.log(player_ninja.score);
+	   		if (knives[i].crash(player_ninja))
+	  		{
+					knives.splice( i, 1 ) ;
+					health_text.html("Health: " + player_ninja.health);
+					console.log(player_ninja.health);
 
+	      }
+				if (player_ninja.health <= 0)
+				{
+					noLoop() ;
+				}
+
+	      if (knives[i].x < 0)
+				{
+					knives.splice(i, 1) ;
+					knives.push(new Enemy()) ;
+				}
+				if (knives.length <= 8)
+				{
+					knives.push(new Enemy()) ;
+
+				}
+		}
+	}
+}
