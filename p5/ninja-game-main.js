@@ -21,7 +21,7 @@ var knives = [] ;
 
 var INITIAL_Y = (7/8) * 600 ;
 
-var GRAVITY = 1.5 ;
+var GRAVITY = 1.1 ;
 
 function setup() 
 {
@@ -57,7 +57,7 @@ function draw()
 			console.log(player_ninja.health);
 			
       }
-		if (player_ninja.health == 0)
+		if (player_ninja.health <= 0)
 		{
 			noLoop() ;
 		}

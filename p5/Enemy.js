@@ -4,7 +4,7 @@ function Enemy()
 	this.y = random(0, 525) ;
    this.width = 13;
    this.height = 13;
-	this.damage = 5 ;
+	this.damage = 15 ;
 	
 	this.show = function()
 	{
@@ -15,7 +15,7 @@ function Enemy()
 	
 	this.move = function()
 	{
-		this.x -= 5 ;
+		this.x -= 8 ;
    }
     
    this.crash = function(obj)
