@@ -15,7 +15,7 @@ function Enemy()
 	
 	this.move = function()
 	{
-		this.x -= 8 ;
+		this.x -= 10 ;
    }
     
    this.crash = function(obj)

@@ -1,4 +1,5 @@
 var health_text ;
+var score_text;
 var player_ninja ;
 var coins = [] ;
 var ninja_image ;
@@ -39,6 +40,7 @@ function setup()
 		}
 	
 	health_text = createP("Health:" + player_ninja.health) ;
+    score_text = createP("Score:" + player_ninja.score) ;
 }
 
 function draw() 
@@ -50,10 +52,13 @@ function draw()
 	{
 		knives[i].move() ;
 		knives[i].show() ;
+        player_ninja.score += 0.1;
+        score_text.html("Score: " + Math.floor(player_ninja.score));
+        console.log(player_ninja.score);
    	if (knives[i].crash(player_ninja))
       {
 			knives.splice( i, 1 ) ;
-			health_text.html("Health:" + player_ninja.health);
+			health_text.html("Health: " + player_ninja.health);
 			console.log(player_ninja.health);
 			
       }
@@ -70,6 +75,7 @@ function draw()
 		if (knives.length <= 8)
 		{
 			knives.push(new Enemy()) ;
+            
 		}
 	}    
 }

@@ -7,6 +7,7 @@ function Ninja()
 	this.xspeed = 1 ;
 	this.yspeed = 0 ;
 	this.health = 100 ;
+    this.score = 0;
 	
 	/*
 	this.sprite = createSprite(this.x, this.y, this.width, this.height);
