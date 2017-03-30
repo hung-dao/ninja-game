@@ -22,6 +22,7 @@ var player_frames = [
 */
 
 var knives = [] ;
+var kunai = [] ;
 
 var INITIAL_Y = (7/8) * 600 + 40 ;
 
@@ -81,6 +82,7 @@ function draw()
 			{
 				knives[i].move() ;
 				knives[i].show() ;
+<<<<<<< HEAD
 	      
                 score_text = "Score: " + Math.floor(player_ninja.score);
                 
@@ -102,9 +104,18 @@ function draw()
 			  	text("GAME OVER!! \n PRESS ENTER TO PLAY", 400, 550);
 					//Stop looping after SHOW GAME OVER AND RESTART SCREEN
 					noLoop() ;
+=======
+	      	score_text.html("Score: " + Math.floor(player_ninja.score));
+	      	console.log(player_ninja.score);
+	   		if (knives[i].crash(player_ninja))
+	  			{
+						knives.splice( i, 1 ) ;
+						health_text.html("Health: " + player_ninja.health);
+						console.log(player_ninja.health);
+>>>>>>> master
 				}
-
-	      if (knives[i].x < 0)
+					
+				if (knives[i].x < 0)
 				{
 					knives.splice(i, 1) ;
 					knives.push(new Shuriken()) ;
@@ -113,7 +124,18 @@ function draw()
 				{
 					knives.push(new Shuriken()) ;
 				}
-		}
+	      }
+			if (player_ninja.health <= 0) //if health is less than or equal to zero SHOW GAME OVER AND RESTART SCREEN
+			{
+				background(bg);
+			  	noStroke();
+			  	fill(0);
+			  	textAlign(CENTER);
+			  	textSize(30);
+			  	text("GAME OVER!! \n PRESS ENTER TO PLAY", 400, 550);
+					//Stop looping after SHOW GAME OVER AND RESTART SCREEN
+					noLoop() ;
+			}
 	}
 }
 

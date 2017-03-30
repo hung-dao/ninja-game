@@ -59,7 +59,7 @@ function Kunai()
 
 Kunai.prototype.show = function()
 {
-	fill(111);
+	fill('red');
 	rect( this.x, this.y, this.width, this.height) ;
 }
 
@@ -73,7 +73,7 @@ function Katana()
 
 Katana.prototype.show = function()
 {
-	fill(255);
+	fill('yellow');
 	rect( this.x, this.y, this.width, this.height) ;
 }
 
