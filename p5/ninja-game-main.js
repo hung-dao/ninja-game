@@ -38,11 +38,12 @@ function setup()
 	*/
 	for (var i = 0; i < 8; i ++)
 		{
-			knives.push(new Enemy()) ;
+			knives.push(new Shuriken()) ;
 		}
+	var kunai ;
 
 	health_text = createP("Health:" + player_ninja.health) ;
-    score_text = createP("Score:" + player_ninja.score) ;
+   score_text = createP("Score:" + player_ninja.score) ;
 }
 
 function draw()
@@ -62,11 +63,11 @@ function draw()
 			background(51) ;
 			player_ninja.update() ;
 			player_ninja.show() ;
+		   player_ninja.score += 0.1;
 			for (var i = 0; i < knives.length; i ++)
 			{
 				knives[i].move() ;
 				knives[i].show() ;
-	      player_ninja.score += 0.1;
 	      score_text.html("Score: " + Math.floor(player_ninja.score));
 	      console.log(player_ninja.score);
 	   		if (knives[i].crash(player_ninja))
@@ -84,12 +85,11 @@ function draw()
 	      if (knives[i].x < 0)
 				{
 					knives.splice(i, 1) ;
-					knives.push(new Enemy()) ;
+					knives.push(new Shuriken()) ;
 				}
 				if (knives.length <= 8)
 				{
-					knives.push(new Enemy()) ;
-
+					knives.push(new Shuriken()) ;
 				}
 		}
 	}
