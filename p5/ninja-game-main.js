@@ -27,7 +27,10 @@ var GRAVITY = 1.1 ;
 
 function setup()
 {
+	//The following line is for loading image
 	bg = loadImage("ninja.gif");
+	/////
+
 	var canvas = createCanvas(800, 600);
 	//canvas.parent('centered') ;
 	player_ninja = new Ninja() ;
@@ -47,18 +50,20 @@ function setup()
 
 function draw()
 {
+	//Check for key to the start game
 	if(startGame == false){
-	  	background(bg);
-	  	noStroke();
-	  	fill(0);
-	  	textAlign(CENTER);
-	  	textSize(50);
-	  	text("PRESS ANY KEY TO PLAY", 400, 550);
-	    	if (keyIsPressed){
-	            startGame = true;
-	    	}
+				background(bg);
+		  	noStroke();
+		  	fill(0);
+		  	textAlign(CENTER);
+		  	textSize(50);
+		  	text("PRESS ANY KEY TO PLAY", 400, 550);
+		    	if (keyIsPressed){
+		            startGame = true;
+		    	}
+
 	 }
-	 else{
+	else{
 			background(51) ;
 			player_ninja.update() ;
 			player_ninja.show() ;
@@ -76,8 +81,15 @@ function draw()
 					console.log(player_ninja.health);
 
 	      }
-				if (player_ninja.health <= 0)
+				if (player_ninja.health <= 0) //if health is less than or equal to zero SHOW GAME OVER AND RESTART SCREEN
 				{
+					background(bg);
+			  	noStroke();
+			  	fill(0);
+			  	textAlign(CENTER);
+			  	textSize(30);
+			  	text("GAME OVER!! \n PRESS ENTER TO PLAY", 400, 550);
+					//Stop looping after SHOW GAME OVER AND RESTART SCREEN
 					noLoop() ;
 				}
 
@@ -93,4 +105,13 @@ function draw()
 				}
 		}
 	}
+}
+
+//Look for ENTER to restart the game
+function keyPressed() {
+	if (keyCode === ENTER) {
+		player_ninja.health = 100;
+		loop();
+  }
+	return false;
 }
