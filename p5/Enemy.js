@@ -1,7 +1,7 @@
 function Enemy()
 {
 	this.x = random (800, 1600) ;
-	this.y = random(0, 525) ;
+	this.y = random(0, 565) ;
    this.width = 20;
    this.height = 20;
 	this.damage = 0 ;

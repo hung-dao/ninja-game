@@ -4,6 +4,8 @@ var player_ninja ;
 var coins = [] ;
 var ninja_image ;
 var startGame = false;
+
+
 /*
 var player_sprite_sheet ;
 var player_frames = [
@@ -21,7 +23,7 @@ var player_frames = [
 
 var knives = [] ;
 
-var INITIAL_Y = (7/8) * 600 ;
+var INITIAL_Y = (7/8) * 600 + 40 ;
 
 var GRAVITY = 1.1 ;
 
@@ -45,8 +47,8 @@ function setup()
 		}
 	var kunai ;
 
-	health_text = createP("Health:" + player_ninja.health) ;
-   score_text = createP("Score:" + player_ninja.score) ;
+	
+   
 }
 
 function draw()
@@ -69,18 +71,26 @@ function draw()
 			player_ninja.update() ;
 			player_ninja.show() ;
 		   player_ninja.score += 0.1;
+            
+         health_text = "Health: " + player_ninja.health;
+					
+            textSize(14);
+            text(health_text,17,34);
+
 			for (var i = 0; i < knives.length; i ++)
 			{
 				knives[i].move() ;
 				knives[i].show() ;
-	      score_text.html("Score: " + Math.floor(player_ninja.score));
-	      console.log(player_ninja.score);
+	      
+                score_text = "Score: " + Math.floor(player_ninja.score);
+                
+                textSize(14);
+                text(score_text,17,17);
+	      
 	   		if (knives[i].crash(player_ninja))
 	  		{
 					knives.splice( i, 1 ) ;
-					health_text.html("Health: " + player_ninja.health);
-					console.log(player_ninja.health);
-
+					
 	      }
 				if (player_ninja.health <= 0) //if health is less than or equal to zero SHOW GAME OVER AND RESTART SCREEN
 				{
