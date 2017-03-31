@@ -73,7 +73,7 @@ function Katana()
 
 Katana.prototype.show = function()
 {
-	fill('yellow');
+	fill('#FAE');
 	rect( this.x, this.y, this.width, this.height) ;
 }
 

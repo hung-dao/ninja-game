@@ -20,8 +20,9 @@ var player_frames = [
 ];
 */
 
-var knives = [] ;
-var kunai = [] ;
+var shurikens = [] ;
+var kunai ;
+var katana ;
 
 var INITIAL_Y = (7/8) * 600 + 40 ;
 var GRAVITY = 1.1 ;
@@ -39,12 +40,16 @@ function setup()
 	*/
 	for (var i = 0; i < 8; i ++)
 	{
-		knives.push(new Shuriken()) ;
-	}	
+		shurikens.push(new Shuriken()) ;
+	}
+	
+	setInterval(kunai_creation, 10000) ;
+	setInterval(katana_creation, 20000) ;
 }
 
 function draw()
 {
+	
 	if(startGame == false){
 		showStartScreen();
   }
@@ -80,32 +85,71 @@ function showGameScreen(){
 	score_text = "Score: " + Math.floor(player_ninja.score);
    textSize(14);
    text(score_text,17,17);
-  
-	for (var i = 0; i < knives.length; i ++)
+	
+	if (kunai != null)
 	{
-		knives[i].move() ;
-		knives[i].show() ;
-		//score_text.html("Score: " + Math.floor(player_ninja.score));
-		if (knives[i].crash(player_ninja))
+		kunai.move();
+		kunai.show();
+		if (kunai.crash(player_ninja))
 		{
-			knives.splice( i, 1 ) ;
+			kunai = null ;
 		}
-		if (player_ninja.health <= 0) //if health is less than or equal to zero SHOW GAME OVER AND RESTART SCREEN
+		else if (kunai.x < 0)
 		{
-				showRestartScreen();
-		}
-
-		if (knives[i].x < 0)
-		{
-			knives.splice(i, 1) ;
-			knives.push(new Shuriken()) ;
-		}
-		if (knives.length <= 8)
-		{
-			knives.push(new Shuriken()) ;
+			kunai = null ;
 		}
 	}
-	console.log(player_ninja.score) ;
+	
+	if (katana != null)
+	{
+		katana.move();
+		katana.show();
+		if (katana.crash(player_ninja))
+		{
+			katana = null ;
+		}
+		else if (katana.x < 0)
+		{
+			katana = null ;
+		}
+	}
+	
+	if (player_ninja.health <= 0) //if health is less than or equal to zero SHOW GAME OVER AND RESTART SCREEN
+	{
+		showRestartScreen();
+	}
+  
+	for (var i = 0; i < shurikens.length; i ++)
+	{
+		shurikens[i].move() ;
+		shurikens[i].show() ;
+		//score_text.html("Score: " + Math.floor(player_ninja.score));
+		if (shurikens[i].crash(player_ninja))
+		{
+			shurikens.splice( i, 1 ) ;
+		}
+
+		if (shurikens[i].x < 0)
+		{
+			shurikens.splice(i, 1) ;
+			shurikens.push(new Shuriken()) ;
+		}
+		if (shurikens.length <= 8)
+		{
+			shurikens.push(new Shuriken()) ;
+		}
+	}
+}
+
+function kunai_creation()
+{
+	kunai = new Kunai() ;
+	console.log("created kunai") ;
+}
+
+function katana_creation()
+{
+	katana = new Katana() ;
 }
 //Restart Screen Codes
 function showRestartScreen(){
