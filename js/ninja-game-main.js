@@ -29,7 +29,7 @@ var GRAVITY = 1.1 ;
 function setup()
 {
 	//The following line is for loading image
-	bg = loadImage("ninja.gif") ;
+	bg = loadImage("assets/ninja.gif") ;
 	var canvas = createCanvas(800, 600);
 	player_ninja = new Ninja() ;
 	/*
@@ -40,7 +40,7 @@ function setup()
 	for (var i = 0; i < 8; i ++)
 	{
 		knives.push(new Shuriken()) ;
-	}	
+	}
 }
 
 function draw()
@@ -80,7 +80,7 @@ function showGameScreen(){
 	score_text = "Score: " + Math.floor(player_ninja.score);
    textSize(14);
    text(score_text,17,17);
-  
+
 	for (var i = 0; i < knives.length; i ++)
 	{
 		knives[i].move() ;
@@ -126,4 +126,3 @@ function keyPressed() {
 		loop();
   }
 }
-
