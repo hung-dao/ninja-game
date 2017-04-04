@@ -2,8 +2,6 @@ function Collider()
 {
 	this.x = random (800, 1600) ;
 	this.y = random(0, 565) ;
-   this.width ;
-   this.height ;
 	this.speed ;
 	
 	this.show = function()
@@ -24,7 +22,21 @@ function Collider()
       	 this.y + this.height >= obj.y &&    // r1 top edge past r2 bottom
       	 this.y <= obj.y + obj.height) // r1 bottom edge past r2 top
 		{
-			return true ;
+			if (this instanceof Shuriken ||
+				 this instanceof Katana ||
+				 this instanceof Kunai)
+			{
+				obj.health -= this.damage;
+			}
+			else if (this instanceof Health)
+			{
+				obj.health += this.value ;
+			}
+			else if (this instanceof Coin)
+			{
+				obj.score += this.value ;
+			}
+			return true ;	
 		}
 		else
 		{

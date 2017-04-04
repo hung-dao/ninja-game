@@ -1,7 +1,6 @@
 var health_text;
 var score_text;
 var player_ninja ;
-var coins = [] ;
 var ninja_image ;
 var startGame = false;
 
@@ -24,6 +23,9 @@ var shurikens = [] ;
 var kunai ;
 var katana ;
 
+var coins = [] ;
+var hp_point ;
+
 var INITIAL_Y = (7/8) * 600 + 40 ;
 var GRAVITY = 1.1 ;
 
@@ -43,8 +45,14 @@ function setup()
 		shurikens.push(new Shuriken()) ;
 	}
 	
+	for (var i = 0; i < 4; i ++)
+	{
+		coins.push(new Coin());
+	}
+	
 	setInterval(kunai_creation, 10000) ;
 	setInterval(katana_creation, 20000) ;
+	setInterval(health_creation, 10000) ;
 }
 
 function draw()
@@ -112,6 +120,20 @@ function showGameScreen(){
 		{
 			katana = null ;
 		}
+	}	
+	
+	if (hp_point != null)
+	{
+		hp_point.move();
+		hp_point.show();
+		if (hp_point.crash(player_ninja))
+		{
+			hp_point = null ;
+		}
+		else if (hp_point.x < 0)
+		{
+			hp_point = null ;
+		}
 	}
 	
 	if (player_ninja.health <= 0) //if health is less than or equal to zero SHOW GAME OVER AND RESTART SCREEN
@@ -138,6 +160,27 @@ function showGameScreen(){
 		{
 			shurikens.push(new Shuriken()) ;
 		}
+	}	
+	
+	for (var i = 0; i < coins.length; i ++)
+	{
+		coins[i].move() ;
+		coins[i].show() ;
+		//score_text.html("Score: " + Math.floor(player_ninja.score));
+		if (coins[i].crash(player_ninja))
+		{
+			coins.splice( i, 1 ) ;
+		}
+
+		if (coins[i].x < 0)
+		{
+			coins.splice(i, 1) ;
+			coins.push(new Coin()) ;
+		}
+		if (coins.length <= 8)
+		{
+			coins.push(new Coin()) ;
+		}
 	}
 }
 
@@ -151,6 +194,12 @@ function katana_creation()
 {
 	katana = new Katana() ;
 }
+
+function health_creation()
+{
+	hp_point = new Health() ;
+}
+
 //Restart Screen Codes
 function showRestartScreen(){
 	background(bg);
