@@ -36,26 +36,30 @@ of those sections to manage the look and feel of the site. */
     height: 100%;
     padding-top: 150px;
     text-align: center;
+    background: #eee;
+}
+
+.play-section {
+    height: 100%;
+    padding-top: 150px;
+    text-align: center;
     background: #000;
+}
+
+.stats-section {
+    height: 100%;
+    padding-top: 150px;
+    text-align: center;
+    background: #eee;
 }
 
 .about-section {
     height: 100%;
     padding-top: 150px;
     text-align: center;
-    background: #eee;
-}
-
-.services-section {
-    height: 100%;
-    padding-top: 150px;
-    text-align: center;
     background: #000;
 }
-
-.contact-section {
-    height: 100%;
-    padding-top: 150px;
-    text-align: center;
-    background: #eee;
+.navbar {
+    background: Black;
+    color: white;
 }

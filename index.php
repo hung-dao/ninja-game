@@ -40,13 +40,13 @@
                         <a class="page-scroll" href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#about">Play</a>
+                        <a class="page-scroll" href="#play">Play</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#services">Stats</a>
+                        <a class="page-scroll" href="#stats">Stats</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#contact">About</a>
+                        <a class="page-scroll" href="#about">About</a>
                     </li>
                 </ul>
             </div>
@@ -58,8 +58,30 @@
     <section id="intro" class="intro-section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12" id="canvas-holder">
+                <div class="col-lg-12">
 
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Play Section -->
+    <section id="play" class="play-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12" id="canvas-holder">
+                    <h1>Play Section</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Stats Section</h1>
                 </div>
             </div>
         </div>
@@ -71,28 +93,6 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1>About Section</h1>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1>Services Section</h1>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1>Contact Section</h1>
                 </div>
             </div>
         </div>
