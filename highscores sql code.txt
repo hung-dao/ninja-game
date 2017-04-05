@@ -1,0 +1,13 @@
+
+
+
+
+  GRANT ALL ON highscores.* TO 'root'@'localhost' IDENTIFIED BY 'sql';
+  
+
+  CREATE TABLE scores(
+  
+  name VARCHAR(30) PRIMARY KEY ,
+  score INT
+  
+  ) Engine=InnoDB;
