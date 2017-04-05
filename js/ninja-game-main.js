@@ -150,8 +150,7 @@ function showGameScreen(){
 		{
 			shurikens.splice( i, 1 ) ;
 		}
-
-		if (shurikens[i].x < 0)
+		else if (shurikens[i].x < 0)
 		{
 			shurikens.splice(i, 1) ;
 			shurikens.push(new Shuriken()) ;
@@ -171,12 +170,12 @@ function showGameScreen(){
 		{
 			coins.splice( i, 1 ) ;
 		}
-
-		if (coins[i].x < 0)
+		else if (coins[i].x < 0)
 		{
 			coins.splice(i, 1) ;
 			coins.push(new Coin()) ;
 		}
+		
 		if (coins.length <= 8)
 		{
 			coins.push(new Coin()) ;
