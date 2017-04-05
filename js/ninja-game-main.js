@@ -1,5 +1,7 @@
 var health_text;
 var score_text;
+var score;
+var name;
 var player_ninja ;
 var coins = [] ;
 var ninja_image ;
@@ -76,8 +78,10 @@ function showStartScreen () {
 //Game Screen Codes
 function showGameScreen(){
 	background(51) ;
-	player_ninja.update() ;
-	player_ninja.show() ;
+    
+    player_ninja.show() ;
+    player_ninja.update() ;
+    
 	player_ninja.score += 0.1;
 	health_text = "Health: " + player_ninja.health;
    textSize(14);
@@ -116,7 +120,16 @@ function showGameScreen(){
 	
 	if (player_ninja.health <= 0) //if health is less than or equal to zero SHOW GAME OVER AND RESTART SCREEN
 	{
-		showRestartScreen();
+		score = Math.floor(player_ninja.score);
+        player_ninja.y = 100; //return the ninja to the initial position
+        name = prompt("Game over. Please enter your name: ", "");
+        if (window.XMLHttpRequest) {
+                        xmlhttp = new XMLHttpRequest();
+                    }
+
+                    xmlhttp.open("GET", "./js/test.php?name=" + name + "&score=" + score, true);
+                    xmlhttp.send();
+        showRestartScreen();
 	}
   
 	for (var i = 0; i < shurikens.length; i ++)
