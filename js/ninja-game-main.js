@@ -4,21 +4,6 @@ var player_ninja ;
 var ninja_image ;
 var startGame = false;
 
-/*
-var player_sprite_sheet ;
-var player_frames = [
-  {"name":"player_run01", "frame":{"x":0,   "y": 128, "width": 32, "height": 64}},
-  {"name":"player_run02", "frame":{"x":32,  "y": 128, "width": 32, "height": 64}},
-  {"name":"player_run03", "frame":{"x":64,  "y": 128, "width": 32, "height": 64}},
-  {"name":"player_run04", "frame":{"x":96,  "y": 128, "width": 32, "height": 64}},
-  {"name":"player_run05", "frame":{"x":128, "y": 128, "width": 32, "height": 64}},
-  {"name":"player_run06", "frame":{"x":160, "y": 128, "width": 32, "height": 64}},
-  {"name":"player_run07", "frame":{"x":192, "y": 128, "width": 32, "height": 64}},
-  {"name":"player_run08", "frame":{"x":224, "y": 128, "width": 32, "height": 64}},
-  {"name":"player_run09", "frame":{"x":256, "y": 128, "width": 32, "height": 64}}
-];
-*/
-
 var shurikens = [] ;
 var kunai ;
 var katana ;
@@ -35,11 +20,7 @@ function setup()
 	bg = loadImage("assets/ninja.gif") ;
 	var canvas = createCanvas(800, 600);
 	player_ninja = new Ninja() ;
-	/*
-	player_ninja.sprite = createSprite(player_ninja.x, player_ninja.y, player_ninja.width, player_ninja.height);
-   player_ninja.sprite.addAnimation('run', player_ninja.player_run);
-   player_ninja.sprite.addAnimation('stand', player_ninja.player_stand);
-	*/
+
 	for (var i = 0; i < 8; i ++)
 	{
 		shurikens.push(new Shuriken()) ;
@@ -84,7 +65,7 @@ function showStartScreen () {
 //Game Screen Codes
 function showGameScreen(){
 	background(51) ;
-	player_ninja.update() ;
+	player_ninja.move() ;
 	player_ninja.show() ;
 	player_ninja.score += 0.1;
 	health_text = "Health: " + player_ninja.health;
