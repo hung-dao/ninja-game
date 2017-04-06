@@ -1,5 +1,7 @@
 var health_text;
 var score_text;
+var score;
+var name;
 var player_ninja ;
 var ninja_image ;
 var startGame = false;
@@ -120,7 +122,16 @@ function showGameScreen(){
 
 	if (player_ninja.health <= 0) //if health is less than or equal to zero SHOW GAME OVER AND RESTART SCREEN
 	{
-		showRestartScreen();
+		score = Math.floor(player_ninja.score);
+        player_ninja.y = 100; //return the ninja to the initial position
+        name = prompt("Game over. Please enter your name: ", "");
+        if (window.XMLHttpRequest) {
+                        xmlhttp = new XMLHttpRequest();
+                    }
+
+                    xmlhttp.open("GET", "./php/test.php?name=" + name + "&score=" + score, true);
+                    xmlhttp.send();
+        showRestartScreen();
 	}
 
 	for (var i = 0; i < shurikens.length; i ++)
