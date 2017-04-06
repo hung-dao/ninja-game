@@ -13,6 +13,8 @@
 
     <script src="js/ninja-game-main.js"></script>
     <script src="js/Ninja.js"></script>
+    <script src="js/Collider.js"></script>
+    <script src="js/Pickup.js"></script>  
     <script src="js/Enemy.js"></script>
     <script src="js/scrolling-bar.js"></script>
 
