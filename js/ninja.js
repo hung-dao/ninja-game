@@ -2,7 +2,7 @@ function Ninja()
 {
 	this.height = 60 ;
 	this.width = 40 ;
-	this.x = 20  ;
+	this.x = 20 ;
 	this.y = 100;
 	this.xspeed = 1 ;
 	this.yspeed = 0 ;
@@ -42,6 +42,7 @@ function Ninja()
 	{
 		fill(255) ;
 		//drawSprites();
+       
 		rect(this.x, this.y, this.width, this.height) ;
 	}
 	

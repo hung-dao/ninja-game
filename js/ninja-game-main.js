@@ -127,7 +127,7 @@ function showGameScreen(){
                         xmlhttp = new XMLHttpRequest();
                     }
 
-                    xmlhttp.open("GET", "./js/test.php?name=" + name + "&score=" + score, true);
+                    xmlhttp.open("GET", "./php/test.php?name=" + name + "&score=" + score, true);
                     xmlhttp.send();
         showRestartScreen();
 	}
