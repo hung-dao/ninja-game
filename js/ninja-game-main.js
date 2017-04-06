@@ -19,6 +19,7 @@ function setup()
 	//The following line is for loading image
 	bg = loadImage("assets/ninja.gif") ;
 	var canvas = createCanvas(800, 600);
+	canvas.parent('canvas-holder');
 	player_ninja = new Ninja() ;
 
 	for (var i = 0; i < 8; i ++)
@@ -38,7 +39,7 @@ function setup()
 
 function draw()
 {
-	
+
 	if(startGame == false){
 		showStartScreen();
   }
@@ -74,7 +75,7 @@ function showGameScreen(){
 	score_text = "Score: " + Math.floor(player_ninja.score);
    textSize(14);
    text(score_text,17,17);
-	
+
 	if (kunai != null)
 	{
 		kunai.move();
@@ -88,7 +89,7 @@ function showGameScreen(){
 			kunai = null ;
 		}
 	}
-	
+
 	if (katana != null)
 	{
 		katana.move();
@@ -116,12 +117,12 @@ function showGameScreen(){
 			hp_point = null ;
 		}
 	}
-	
+
 	if (player_ninja.health <= 0) //if health is less than or equal to zero SHOW GAME OVER AND RESTART SCREEN
 	{
 		showRestartScreen();
 	}
-  
+
 	for (var i = 0; i < shurikens.length; i ++)
 	{
 		shurikens[i].move() ;
@@ -199,4 +200,3 @@ function keyPressed() {
 		loop();
   }
 }
-

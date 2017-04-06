@@ -14,26 +14,26 @@ function Ninja()
 		fill(255) ;
 		rect(this.x, this.y, this.width, this.height) ;
 	}
-	
+
 	this.move = function()
 	{
-		if (keyIsDown(UP_ARROW))
+		if (keyIsDown(87))
 		{
 			this.y -= 5 ;
 		}
-		if (keyIsDown(DOWN_ARROW))
+		if (keyIsDown(83))
 		{
 			if ( this.y + this.height < INITIAL_Y )
 			{
 				this.y += 5 ;
 			}
 		}
-		if (keyIsDown(LEFT_ARROW))
+		if (keyIsDown(65))
 		{
     		// move left
     		this.x -= 5 ;
-		}				
-		if (keyIsDown(RIGHT_ARROW))
+		}
+		if (keyIsDown(68))
 		{
     		// move right
 			this.x += 5 ;
