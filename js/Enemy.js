@@ -9,14 +9,17 @@ function Shuriken()
 { 
 	Enemy.call(this) ; 
 	this.damage = 5 ;
-	this.width = 10 ;
-	this.height = 10 ;
+	this.width = 12 ;
+	this.height = 12 ;
 	this.speed = 10 ;
+	this.sprite = shuriken_sprite ;
 	
 	this.show = function()
 	{
 		fill('grey') ;
 		rect( this.x, this.y, this.width, this.height ) ;
+		animation(this.sprite, this.x + (this.width/2), this.y + (this.height/2)) ;
+		
 	}
 }
 

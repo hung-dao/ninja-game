@@ -6,21 +6,31 @@ var player_ninja ;
 var startGame = false;
 
 var player_run ;
-
+var player_jump ;
+var player_fall ;
 
 var shurikens = [] ;
 var kunai ;
 var katana ;
 
+var shuriken_sprite ;
+
 var coins = [] ;
 var hp_point ;
 
 var INITIAL_Y = (7/8) * 600 + 40 ;
-var GRAVITY = 1.1 ;
+var GRAVITY = 1.001 ;
 
 function preload()
 {	
-	player_run = loadAnimation('assets/sprites/running/01.png', 'assets/sprites/running/02.png') ;
+	player_run = loadAnimation('assets/sprites/running/01.png', 'assets/sprites/running/02.png',
+									   'assets/sprites/running/03.png', 'assets/sprites/running/04.png',
+									   'assets/sprites/running/05.png', 'assets/sprites/running/06.png') ;
+	
+	player_jump = loadAnimation('assets/sprites/jumpfall/jump.png') ;
+	player_fall = loadAnimation('assets/sprites/jumpfall/fall.png') ;
+	
+	shuriken_sprite = loadAnimation('assets/sprites/enemies/shuriken1.png');
 }
 
 function setup()
