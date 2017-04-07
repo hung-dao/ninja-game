@@ -141,7 +141,7 @@ function showGameScreen(){
 	{
 		score = Math.floor(player_ninja.score);
         player_ninja.y = 100; //return the ninja to the initial position
-        name = prompt("Game over. Please enter your name: ", "");
+        name = prompt("Game over. Your score is " + score + ". Please enter your name: ", "");
         if (window.XMLHttpRequest) {
                         xmlhttp = new XMLHttpRequest();
                     }

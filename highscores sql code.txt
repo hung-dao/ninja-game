@@ -7,7 +7,8 @@
 
   CREATE TABLE scores(
   
-  name VARCHAR(30) PRIMARY KEY ,
+  id SMALLINT PRIMARY KEY AUTO_INCREMENT ,
+  name VARCHAR(30),
   score INT
   
   ) Engine=InnoDB;
