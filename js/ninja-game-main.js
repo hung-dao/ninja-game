@@ -3,8 +3,10 @@ var score_text;
 var score;
 var name;
 var player_ninja ;
-var ninja_image ;
 var startGame = false;
+
+var player_run ;
+
 
 var shurikens = [] ;
 var kunai ;
@@ -15,6 +17,11 @@ var hp_point ;
 
 var INITIAL_Y = (7/8) * 600 + 40 ;
 var GRAVITY = 1.1 ;
+
+function preload()
+{	
+	player_run = loadAnimation('assets/sprites/running/01.png', 'assets/sprites/running/02.png') ;
+}
 
 function setup()
 {
