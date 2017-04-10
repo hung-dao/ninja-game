@@ -10,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.8/p5.js"></script>
     <script src="p5/libraries/p5.play.js"></script>
     <script src="p5/libraries/p5.dom.js"></script>
+    <script src="p5/libraries/p5.sound.js"></script>  
 
     <link rel="stylesheet" href="css/styles.css">
 

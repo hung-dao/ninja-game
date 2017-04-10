@@ -2,6 +2,7 @@ var background ;
 var current_screen ;
 var played_once = false ;
 var startGame = false;
+var ratio = 1;
 
 var score;
 var name;
@@ -35,6 +36,10 @@ var heart ;
 var INITIAL_Y = (7/8) * 600 + 40 ;
 var GRAVITY = 1.001 ;
 
+var hit_audio = new Audio("./sounds/01.wav");
+var health_audio = new Audio("./sounds/06.wav");
+var coin_audio = new Audio("./sounds/07.wav");
+
 function preload()
 {	
 	menu_background = loadImage("assets/ninja.gif") ;
@@ -65,7 +70,7 @@ function preload()
 function setup()
 {
 	//The following line is for loading image
-	var canvas = createCanvas(800, 600);
+	var canvas = createCanvas(800*ratio, 600*ratio);
 	canvas.parent('canvas-holder');
 }
 

@@ -28,15 +28,18 @@ function Collider()
 			{
 				obj.ishit = true ;
 				obj.health -= this.damage;
+                hit_audio.play();
 				setTimeout(function(){obj.ishit=false;},500);
 			}
 			else if (this instanceof Health)
 			{
 				obj.health += this.value ;
+                health_audio.play();
 			}
 			else if (this instanceof Coin)
 			{
 				obj.score += this.value ;
+                coin_audio.play();
 			}
 			return true ;	
 		}
