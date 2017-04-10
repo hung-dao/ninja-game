@@ -39,10 +39,15 @@ var GRAVITY = 1.001 ;
 var hit_audio = new Audio("./sounds/01.wav");
 var health_audio = new Audio("./sounds/06.wav");
 var coin_audio = new Audio("./sounds/07.wav");
+var background_sound = new Audio("./sounds/HeroImmortal.mp3");
+
+function setVolume() { 
+    background_sound.volume = 0.2;
+} 
 
 function preload()
 {	
-	menu_background = loadImage("assets/ninja.gif") ;
+    menu_background = loadImage("assets/ninja.gif") ;
 	game_background = loadImage('assets/background.png');
 	
 	player_run = loadAnimation('assets/sprites/running/01.png', 'assets/sprites/running/02.png',
@@ -76,7 +81,7 @@ function setup()
 
 function draw()
 {
-
+    
 	if (startGame == false)
 	{
 		showStartScreen();
@@ -84,6 +89,8 @@ function draw()
 	else
 	{
 		showGameScreen();
+        setVolume();
+        background_sound.play();
 	}
 }
 
