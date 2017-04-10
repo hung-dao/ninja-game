@@ -12,11 +12,13 @@ function Ninja()
 	this.run_sprite = player_run ;
 	this.jump_sprite = player_jump ;
 	this.fall_sprite = player_fall ;
+	this.hit_sprite = player_hit ;
 	this.current_sprite;
 	
 	this.isrunning = false ;
 	this.isjumping = false ;
 	this.isfalling = true ;
+	this.ishit = false ;
 	
 	this.show = function()
 	{
@@ -32,6 +34,16 @@ function Ninja()
 		{
 			this.current_sprite = this.run_sprite ;
 		}
+		
+		if (this.ishit == true)
+		{
+			this.isrunning = false ;
+			this.isjumping = false ;
+			this.isfalling = false ;
+			this.current_sprite = this.hit_sprite ;
+	
+		}
+		
 		fill(255) ;
 		animation(this.current_sprite, (this.x + this.width/2), this.y + (this.height/2)) ;
 		//rect(this.x, this.y, this.width, this.height) ;

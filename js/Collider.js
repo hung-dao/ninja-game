@@ -26,7 +26,9 @@ function Collider()
 				 this instanceof Katana ||
 				 this instanceof Kunai)
 			{
+				obj.ishit = true ;
 				obj.health -= this.damage;
+				setTimeout(function(){obj.ishit=false;},500);
 			}
 			else if (this instanceof Health)
 			{
