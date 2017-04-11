@@ -1,8 +1,15 @@
-var background ;
+var canvas ;
+var context ;
+var do_scale = false;
+var current_screen ;
 var current_screen ;
 var played_once = false ;
 var startGame = false;
-var ratio = 1;
+var ratio_x = 1;
+var ratio_y = 1;
+var initial_canvas_height;
+var initial_canvas_width;
+var full_screen_button ;
 
 var score;
 var name;
@@ -47,7 +54,8 @@ function setVolume() {
 
 function preload()
 {	
-    menu_background = loadImage("assets/ninja.gif") ;
+   menu_background = loadImage("assets/ninja.gif") ;
+	
 	game_background = loadImage('assets/background.png');
 	
 	player_run = loadAnimation('assets/sprites/running/01.png', 'assets/sprites/running/02.png',
@@ -74,14 +82,34 @@ function preload()
 
 function setup()
 {
-	//The following line is for loading image
-	var canvas = createCanvas(800*ratio, 600*ratio);
+	canvas = createCanvas(800, 600);
+	
+	initial_windowHeight = windowHeight;
+	initial_windowWidth = windowWidth;
+	initial_canvas_width = canvas.width;
+	initial_canvas_height = canvas.height;
+	
+	canvas.id('game_canvas');
 	canvas.parent('canvas-holder');
+	context = document.getElementById('game_canvas').getContext("2d");
+	
+	full_screen_button = createButton('fullscreen');
+	full_screen_button.parent('canvas-holder');
+	full_screen_button.position(10,20);
+	//full_screen_button.mousePressed(go_fullscreen);
+	
+	ratio_x = initial_windowWidth/initial_canvas_width;
+	ratio_y = initial_windowHeight/initial_canvas_height;
+	
+	background_x = 0;
 }
 
 function draw()
-{
-    
+{    
+	if (do_scale == true)
+	{
+		//context.scale(ratio_x/windowWidth, ratio_y/windowHeight);
+	}
 	if (startGame == false)
 	{
 		showStartScreen();
@@ -89,8 +117,8 @@ function draw()
 	else
 	{
 		showGameScreen();
-        setVolume();
-        background_sound.play();
+      setVolume();
+      background_sound.play();
 	}
 }
 
@@ -114,7 +142,7 @@ function initialize_game()
 		
 		clearInterval(kunai_interval);
 		clearInterval(katana_interval);
-		clearInterval(health_interval) ;
+		clearInterval(health_interval);
 	}
 	player_ninja = new Ninja() ;
 
@@ -164,6 +192,14 @@ function showStartScreen()
 function showGameScreen()
 {
 	background(game_background) ;
+	
+	image(game_background, background_x, 0);
+	background_x -= 1;
+	image(game_background, background_x+game_background.width, 0)
+	if(background_x == -(game_background.width))
+	{
+		background_x = 0;
+	}
 	
 	player_ninja.move() ;
 	player_ninja.show() ;
@@ -290,5 +326,15 @@ function katana_creation()
 function health_creation()
 {
 	hp_point = new Health() ;
+}
+
+window.onresize = function()
+{
+	var w = window.innerWidth;
+	var h = window.innerHeight;  
+	canvas.size(w / ratio_x, h / ratio_y);
+	
+	if (do_scale == false)
+		 do_scale = true;
 }
 
