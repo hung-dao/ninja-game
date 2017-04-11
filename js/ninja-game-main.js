@@ -23,6 +23,7 @@ var player_run ;
 var player_jump ;
 var player_fall ;
 var player_hit ;
+var player_dead ;
 
 var shurikens = [] ;
 var kunai ;
@@ -42,14 +43,11 @@ var INITIAL_Y = (7/8) * 600 + 40 ;
 var GRAVITY = .3 ;
 var FLAP = -7;
 
-var hit_audio = new Audio("./sounds/01.wav");
-var health_audio = new Audio("./sounds/06.wav");
-var coin_audio = new Audio("./sounds/07.wav");
-var background_sound = new Audio("./sounds/HeroImmortal.mp3");
-
-function setVolume() { 
-    background_sound.volume = 0.2;
-} 
+var hit_enemy ;
+var health_audio ;
+var coin_audio ;
+var background_sound ;
+var died_sound ;
 
 function preload()
 {	
@@ -64,6 +62,7 @@ function preload()
 	player_jump = loadAnimation('assets/sprites/jumpfall/jump.png') ;
 	player_fall = loadAnimation('assets/sprites/jumpfall/fall.png') ;
 	player_hit  = loadAnimation('assets/sprites/jumpfall/hit.png') ;
+	player_dead = loadAnimation('assets/sprites/jumpfall/dead.png')
 	
 	shuriken_sprite = loadAnimation('assets/sprites/enemies/shuriken1.png');
 	katana_sprite   = loadAnimation('assets/sprites/enemies/katana.png') ;
@@ -77,6 +76,11 @@ function preload()
 										 'assets/sprites/pickups/coin7.png', 'assets/sprites/pickups/coin8.png',
 										 'assets/sprites/pickups/coin9.png', 'assets/sprites/pickups/coin10.png',
 										 'assets/sprites/pickups/coin11.png', 'assets/sprites/pickups/coin12.png') ;
+	
+	hit_enemy = loadSound('sounds/01.wav');
+	health_audio = loadSound('sounds/06.wav') ;
+	coin_audio = loadSound('sounds/07.wav');
+	background_sound = loadSound('sounds/HeroImmortal.mp3');
 }
 
 function setup()
@@ -93,6 +97,8 @@ function setup()
 	//full_screen_button.mousePressed(go_fullscreen);
 	
 	background_x = 0;
+	background_sound.setVolume(0.2);
+	background_sound.loop();
 }
 
 function draw()
@@ -104,8 +110,6 @@ function draw()
 	else
 	{
 		showGameScreen();
-      setVolume();
-      background_sound.play();
 	}
 }
 
@@ -244,18 +248,23 @@ function showGameScreen()
 
 	if (player_ninja.health <= 0) //if health is less than or equal to zero SHOW GAME OVER AND RESTART SCREEN
 	{
-		score = Math.floor(player_ninja.score);
-		
-      name = prompt("Game over. Your score is " + score + ". Please enter your name: ", "");
-      if (window.XMLHttpRequest) 
+		background_sound.stop();
+		if (player_ninja.y >= 650)
 		{
-			xmlhttp = new XMLHttpRequest();
-      }
-      xmlhttp.open("GET", "./php/test.php?name=" + name + "&score=" + score, true);
-      xmlhttp.send();
-      
-		played_once = true;
-		startGame = false ;
+			score = Math.floor(player_ninja.score);
+			name = prompt("Game over. Your score is " + score + ". Please enter your name: ", "");
+		   
+			if (window.XMLHttpRequest) 
+			{
+				xmlhttp = new XMLHttpRequest();
+		   
+			}
+			xmlhttp.open("GET", "./php/test.php?name=" + name + "&score=" + score, true);
+			xmlhttp.send();
+		   
+			played_once = true;
+			startGame = false ;
+		}
 	}
 
 	for (var i = 0; i < shurikens.length; i ++)
@@ -314,4 +323,3 @@ function health_creation()
 {
 	hp_point = new Health() ;
 }
-

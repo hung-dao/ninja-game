@@ -45,6 +45,11 @@ function Ninja()
 	
 		}
 		
+		if (this.health <= 0)
+		{
+			this.current_sprite = player_dead ;
+		}
+		
 		fill(255) ;
 		animation(this.current_sprite, (this.x + this.width/2), this.y + (this.height/2)) ;
 		//rect(this.x, this.y, this.width, this.height) ;
@@ -52,70 +57,77 @@ function Ninja()
 
 	this.move = function()
 	{
-		if (keyWentDown(87))
-		{
-			this.isjumping = true ;
-			this.isfalling = false;
-			this.isrunning = false ;
-			
-			this.velocity = FLAP;
-			this.y += this.velocity;
-		}
-		else 
-		{
-			this.isfalling = true ;
-			this.isjumping = false ;
-		}
-		
-		if (keyIsDown(83))
-		{
-			this.isjumping = false ;
-			this.velocity += 0.5;
-			if ( this.y + this.height < INITIAL_Y )
+		if (this.health > 0)
+		{	
+			if (keyWentDown(87))
+			{
+				this.isjumping = true ;
+				this.isfalling = false;
+				this.isrunning = false ;
+				
+				this.velocity = FLAP;
+				this.y += this.velocity;
+			}
+			else 
 			{
 				this.isfalling = true ;
-				this.isrunning = false ;
-
+				this.isjumping = false ;
+			}
+			
+			if (keyIsDown(83))
+			{
+				this.isjumping = false ;
+				this.velocity += 0.5;
+				if ( this.y + this.height < INITIAL_Y )
+				{
+					this.isfalling = true ;
+					this.isrunning = false ;
+	
+				}
+				else 
+				{
+					this.isfalling = false ;
+					this.isrunning = true ;
+				}
+			}
+			if (keyIsDown(65))
+			{
+    			// move left
+    			this.x -= 5 ;
+			}
+			if (keyIsDown(68))
+			{
+    			// move right
+				this.x += 5 ;
+			}
+			
+			if (this.y + this.height < INITIAL_Y )
+			{
+				this.y += this.velocity ; 
+				this.velocity += GRAVITY ;
 			}
 			else 
 			{
 				this.isfalling = false ;
+				this.isjumping = false ;
 				this.isrunning = true ;
+				
+				this.velocity = 0;
 			}
-		}
-		if (keyIsDown(65))
-		{
-    		// move left
-    		this.x -= 5 ;
-		}
-		if (keyIsDown(68))
-		{
-    		// move right
-			this.x += 5 ;
-		}
-		
-		if (this.y + this.height < INITIAL_Y )
-		{
-			this.y += this.velocity ; 
-			this.velocity += GRAVITY ;
-		}
-		else 
-		{
-			this.isfalling = false ;
-			this.isjumping = false ;
-			this.isrunning = true ;
 			
-			this.velocity = 0;
+			if (this.velocity < 0)
+			{
+				this.isjumping = true ;
+				this.isfalling = false;
+				this.isrunning = false ;
+			}
+			
+			this.x = constrain(this.x, 0, 800 - this.width) ;
+			this.y = constrain(this.y, 0, 600 - this.height) ;
 		}
-		
-		if (this.velocity < 0)
+		else
 		{
-			this.isjumping = true ;
-			this.isfalling = false;
-			this.isrunning = false ;
-		}
-		
-		this.x = constrain(this.x, 0, 800 - this.width) ;
-		this.y = constrain(this.y, 0, 600 - this.height) ;
+			this.y += 2;
+		}		
 	}
 }
