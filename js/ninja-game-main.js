@@ -1,14 +1,12 @@
 var canvas ;
 var context ;
-var do_scale = false;
+
 var current_screen ;
 var current_screen ;
 var played_once = false ;
 var startGame = false;
 var ratio_x = 1;
 var ratio_y = 1;
-var initial_canvas_height;
-var initial_canvas_width;
 var full_screen_button ;
 
 var score;
@@ -41,7 +39,8 @@ var coin_rotate ;
 var heart ;
 
 var INITIAL_Y = (7/8) * 600 + 40 ;
-var GRAVITY = 1.001 ;
+var GRAVITY = .3 ;
+var FLAP = -7;
 
 var hit_audio = new Audio("./sounds/01.wav");
 var health_audio = new Audio("./sounds/06.wav");
@@ -84,11 +83,6 @@ function setup()
 {
 	canvas = createCanvas(800, 600);
 	
-	initial_windowHeight = windowHeight;
-	initial_windowWidth = windowWidth;
-	initial_canvas_width = canvas.width;
-	initial_canvas_height = canvas.height;
-	
 	canvas.id('game_canvas');
 	canvas.parent('canvas-holder');
 	context = document.getElementById('game_canvas').getContext("2d");
@@ -98,18 +92,11 @@ function setup()
 	full_screen_button.position(10,20);
 	//full_screen_button.mousePressed(go_fullscreen);
 	
-	ratio_x = initial_windowWidth/initial_canvas_width;
-	ratio_y = initial_windowHeight/initial_canvas_height;
-	
 	background_x = 0;
 }
 
 function draw()
 {    
-	if (do_scale == true)
-	{
-		//context.scale(ratio_x/windowWidth, ratio_y/windowHeight);
-	}
 	if (startGame == false)
 	{
 		showStartScreen();
@@ -326,15 +313,5 @@ function katana_creation()
 function health_creation()
 {
 	hp_point = new Health() ;
-}
-
-window.onresize = function()
-{
-	var w = window.innerWidth;
-	var h = window.innerHeight;  
-	canvas.size(w / ratio_x, h / ratio_y);
-	
-	if (do_scale == false)
-		 do_scale = true;
 }
 

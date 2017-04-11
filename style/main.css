@@ -210,3 +210,7 @@ h2 + p {
 
 	}
 }
+
+#game_canvas{
+	width: 100%;
+}

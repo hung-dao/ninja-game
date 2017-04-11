@@ -8,6 +8,7 @@ function Ninja()
 	this.yspeed = 0 ;
 	this.health = 100 ;
    this.score = 0;
+	this.velocity = 0;
 	
 	this.run_sprite = player_run ;
 	this.jump_sprite = player_jump ;
@@ -51,13 +52,14 @@ function Ninja()
 
 	this.move = function()
 	{
-		if (keyIsDown(87))
+		if (keyWentDown(87))
 		{
 			this.isjumping = true ;
 			this.isfalling = false;
 			this.isrunning = false ;
 			
-			this.y -= 5 ;
+			this.velocity = FLAP;
+			this.y += this.velocity;
 		}
 		else 
 		{
@@ -68,12 +70,12 @@ function Ninja()
 		if (keyIsDown(83))
 		{
 			this.isjumping = false ;
+			this.velocity += 0.5;
 			if ( this.y + this.height < INITIAL_Y )
 			{
 				this.isfalling = true ;
 				this.isrunning = false ;
-				
-				this.y += 5 ;
+
 			}
 			else 
 			{
@@ -94,14 +96,23 @@ function Ninja()
 		
 		if (this.y + this.height < INITIAL_Y )
 		{
-			this.y += GRAVITY ; 
+			this.y += this.velocity ; 
+			this.velocity += GRAVITY ;
 		}
 		else 
 		{
 			this.isfalling = false ;
 			this.isjumping = false ;
 			this.isrunning = true ;
-			GRAVITY = 1.1 ;
+			
+			this.velocity = 0;
+		}
+		
+		if (this.velocity < 0)
+		{
+			this.isjumping = true ;
+			this.isfalling = false;
+			this.isrunning = false ;
 		}
 		
 		this.x = constrain(this.x, 0, 800 - this.width) ;
