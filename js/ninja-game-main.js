@@ -172,7 +172,7 @@ function showStartScreen()
 	if (played_once == false)
 	{
 		showMenu();
-		text( "PRESS ANY KEY TO PLAY", 400, 550);
+		//text( "PRESS ANY KEY TO PLAY", 400, 550);
 	}
 	else
 	{
@@ -192,8 +192,9 @@ function showMenu()
 	strokeWeight(4);
 	stroke(120);
 	fill(255);
-	var start_button = rect(width/2 - 400/2, height/6 - 60/2, 400, 60, 10);
-	var change_level_button = rect(width/2 - 400/2, height/3 - 60/2, 400, 60, 10);
+	var start_button = rect(width/2 - 400/2, height/3 - 60/2, 400, 60, 10);
+	var change_level_button = rect(width/2 - 400/2, height/3 + 100 - 60/2, 400, 60, 10);
+	var change_difficulty_button = rect(width/2 - 400/2, height/3 + 200 - 60/2, 400, 60, 10);
 }
 
 function showGameScreen()
@@ -202,7 +203,8 @@ function showGameScreen()
 	
 	image(game_background, background_x, 0);
 	background_x -= 1;
-	image(game_background, background_x+game_background.width, 0)
+	image(game_background, background_x+game_background.width, 0);
+	
 	if(background_x == -(game_background.width))
 	{
 		background_x = 0;
