@@ -1,8 +1,4 @@
-
-
-
-
-  GRANT ALL ON highscores.* TO 'root'@'localhost' IDENTIFIED BY 'sql';
+GRANT ALL ON highscores.* TO 'root'@'localhost' IDENTIFIED BY 'sql';
   
 
   CREATE TABLE scores(

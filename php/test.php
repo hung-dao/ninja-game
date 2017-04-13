@@ -1,4 +1,5 @@
-<?php include "connection.php"; 
+<?php 
+include "connection.php"; 
 
 $name = mysql_real_escape_string($_GET['name']);
 $score = mysql_real_escape_string($_GET['score']);
