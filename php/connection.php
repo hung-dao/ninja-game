@@ -7,7 +7,7 @@
 	try
 	{
     $conn_string = "mysql:host=mysli.oamk.fi;dbname=opisk_t6dang00";
-	 $db = new PDO ($conn_string, "t6dang00", "Vipprothan95201904");
+	 $db = new PDO ($conn_string, "t6dang00", "sql1995");
 	 $db->setAttribute (PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	 
 	 print ("Connected\n");
