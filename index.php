@@ -24,19 +24,20 @@
     <script src="js/Pickup.js"></script>
     <script src="js/Enemy.js"></script>
     <script src="script/main.js"></script>
+    
 
 </head>
 
 <body>
-    <div class="header">
-        <p>Ninja Game</p>
-    </div>
-
     <section class="panel home" data-section-name="home">
+        
+        <img id="logo" src="assets/oamk_logo.png" alt="oamk logo">
         <div class="inner">
             <div class="vertical-center">
-                <h1>Home</h1>
+                <p></p>
+                <a href="#overview" class="scroll">Scroll for more</a>
             </div>
+            
         </div>
         <ul class="pagination">
             <li><a href="#home" class="active"><span class="hover-text">Home</span></a></li>
@@ -57,6 +58,26 @@
         <div class="inner">
             <div class="vertical-center">
                 <h2>Stats</h2>
+                <?php
+                    include "php/connection.php"; 
+                ?>
+
+                <h2>High scores</h2>
+                <table border="1">
+                <tr>
+                    <TH>Name</TH><TH>Score</TH>
+                </tr>
+
+                <?php
+
+                        $myquery="SELECT name, score FROM scores order by score desc limit 5";
+                        $high_scores=$db->query($myquery);
+                        foreach ($high_scores as $row) {
+                            echo '<tr><td>'.$row['name'].'</td><td>'.$row['score'].'</td>';
+                            echo '</tr>';
+                        }
+                ?>
+                </table>
             </div>
         </div>
     </section>
@@ -68,10 +89,6 @@
             </div>
         </div>
     </section>
-
-    <div class="footer">
-        <p>Footer</p>
-    </div>
 </body>
 
 </html>
