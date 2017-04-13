@@ -24,6 +24,7 @@
     <script src="js/Pickup.js"></script>
     <script src="js/Enemy.js"></script>
     <script src="script/main.js"></script>
+    
 
 </head>
 
@@ -58,7 +59,7 @@
             <div class="vertical-center">
                 <h2>Stats</h2>
                 <?php
-                    include "connection.php"; 
+                    include "php/connection.php"; 
                 ?>
 
                 <h2>High scores</h2>
