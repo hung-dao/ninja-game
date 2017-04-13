@@ -1,5 +1,6 @@
 var canvas ;
 var context ;
+var first_time_started = false ;
 
 var current_screen ;
 var current_screen ;
@@ -77,9 +78,9 @@ function preload()
 										 'assets/sprites/pickups/coin9.png', 'assets/sprites/pickups/coin10.png',
 										 'assets/sprites/pickups/coin11.png', 'assets/sprites/pickups/coin12.png') ;
 	
-	hit_enemy = loadSound('sounds/01.wav');
-	health_audio = loadSound('sounds/06.wav') ;
-	coin_audio = loadSound('sounds/07.wav');
+	hit_enemy = loadSound('sounds/01.ogg');
+	health_audio = loadSound('sounds/06.ogg') ;
+	coin_audio = loadSound('sounds/07.ogg');
 	background_sound = loadSound('sounds/HeroImmortal.mp3');
 }
 
@@ -89,11 +90,10 @@ function setup()
 	
 	canvas.id('game_canvas');
 	canvas.parent('canvas-holder');
-	context = document.getElementById('game_canvas').getContext("2d");
 	
-	full_screen_button = createButton('fullscreen');
-	full_screen_button.parent('canvas-holder');
-	full_screen_button.position(10,20);
+	//full_screen_button = createButton('fullscreen');
+	//full_screen_button.parent('canvas-holder');
+	//full_screen_button.position(10,20);
 	//full_screen_button.mousePressed(go_fullscreen);
 	
 	background_x = 0;
@@ -102,8 +102,16 @@ function setup()
 }
 
 function draw()
-{    
-	if (startGame == false)
+{
+	if (!first_time_started)
+	{
+		background(0);
+		textAlign(CENTER);
+		textSize(50);
+		fill(255);
+		text( "CLICK TO START", 400, 300);
+	}
+	else if (startGame == false && first_time_started == true)
 	{
 		showStartScreen();
   	}
@@ -152,9 +160,6 @@ function initialize_game()
 	health_interval = setInterval(health_creation, 10000) ;
 }
 
-
-
-//Start Screen Codes
 function showStartScreen() 
 {
 	background(menu_background);
@@ -163,8 +168,10 @@ function showStartScreen()
 	
 	textAlign(CENTER);
 	textSize(50);
+	
 	if (played_once == false)
 	{
+		showMenu();
 		text( "PRESS ANY KEY TO PLAY", 400, 550);
 	}
 	else
@@ -179,7 +186,16 @@ function showStartScreen()
 	}
 }
 
-//Game Screen Codes
+function showMenu()
+{
+	background(0);
+	strokeWeight(4);
+	stroke(120);
+	fill(255);
+	var start_button = rect(width/2 - 400/2, height/6 - 60/2, 400, 60, 10);
+	var change_level_button = rect(width/2 - 400/2, height/3 - 60/2, 400, 60, 10);
+}
+
 function showGameScreen()
 {
 	background(game_background) ;
@@ -322,4 +338,13 @@ function katana_creation()
 function health_creation()
 {
 	hp_point = new Health() ;
+}
+
+function mousePressed()
+{
+	if ( mouseX > 0 && mouseX < 800 
+		&& mouseY < 600 && mouseY > 0)
+	{
+		first_time_started = true;		
+	}
 }
