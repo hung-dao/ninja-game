@@ -273,16 +273,9 @@ function showGameScreen()
 			name = prompt("Game over. Your score is " + score + ". Please enter your name: ", "");
 		   
 			var xmlhttp = new XMLHttpRequest();
-			xmlhttp.onreadystatechange = function() 
-			{
-    			if (this.readyState == 4 && this.status == 200) 
-				{
-					xmlhttp.send();
-    			}
-  			};
 			
-			xmlhttp.open("POST", "./php/test.php?name=" + name + "&score=" + score, true);
-
+			xmlhttp.open("GET", "./php/test.php?name=" + name + "&score=" + score, true);
+			xmlhttp.send();
 		   
 			played_once = true;
 			startGame = false ;

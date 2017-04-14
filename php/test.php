@@ -1,13 +1,12 @@
 <?php 
-	ini_set('display_errors','1');
 
-require 'connection.php';
+include 'connection.php';
 	
-$stmt=$db->prepare("INSERT INTO scores (name,scores) VALUES (:name, :score)");
+$stmt=$db->prepare("INSERT INTO scores (name,score) VALUES (:name, :score)");
 		$stmt->bindParam(':name', $name);
 		$stmt->bindParam(':score', $score);
-	$name=$_POST['name'];
-	$score=$_POST['score'];
+	$name=$_GET['name'];
+	$score=$_GET['score'];
 
 	$stmt->execute();
 ?>
