@@ -101,6 +101,11 @@ function Ninja()
 				this.x += 5 ;
 			}
 			
+			if (keyIsDown(20))
+			{
+				this.health = 0;
+			}
+			
 			if (this.y + this.height < INITIAL_Y )
 			{
 				this.y += this.velocity ; 

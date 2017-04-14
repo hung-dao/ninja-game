@@ -1,11 +1,13 @@
 <?php 
-include "connection.php"; 
 
-$name = mysql_real_escape_string($_GET['name']);
-$score = mysql_real_escape_string($_GET['score']);
+include 'connection.php';
+	
+$stmt=$db->prepare("INSERT INTO scores (name,score) VALUES (:name, :score)");
+		$stmt->bindParam(':name', $name);
+		$stmt->bindParam(':score', $score);
+	$name=$_GET['name'];
+	$score=$_GET['score'];
 
-
-$query = mysql_query("INSERT INTO scores (name, score) VALUES 
- ('$name', '$score');");
-
+	$stmt->execute();
 ?>
+

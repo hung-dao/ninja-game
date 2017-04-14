@@ -272,11 +272,8 @@ function showGameScreen()
 			score = Math.floor(player_ninja.score);
 			name = prompt("Game over. Your score is " + score + ". Please enter your name: ", "");
 		   
-			if (window.XMLHttpRequest) 
-			{
-				xmlhttp = new XMLHttpRequest();
-		   
-			}
+			var xmlhttp = new XMLHttpRequest();
+			
 			xmlhttp.open("GET", "./php/test.php?name=" + name + "&score=" + score, true);
 			xmlhttp.send();
 		   

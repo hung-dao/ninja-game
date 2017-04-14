@@ -1,10 +1,11 @@
-GRANT ALL ON highscores.* TO 'root'@'localhost' IDENTIFIED BY 'sql';
-  
+CREATE DATABASE highscores;
 
-  CREATE TABLE scores(
-  
-  id SMALLINT PRIMARY KEY AUTO_INCREMENT ,
+GRANT ALL ON highscores.* TO 'webuser'@'localhost' IDENTIFIED BY 'webpass';
+
+USE highscores;
+
+CREATE TABLE scores(
+  id SMALLINT PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(30),
   score INT
-  
   ) Engine=InnoDB;
