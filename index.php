@@ -13,7 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.8/p5.js"></script>
 
     <link rel="stylesheet" href="style/main.css" />
-    <link href="https://fonts.googleapis.com/css?family=Bungee+Shade" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bungee|Bungee+Shade|Roboto:400,400i" rel="stylesheet">
 
 	  <script language="javascript" type="text/javascript" src="p5/libraries/p5.sound.js"></script>
     <script src="p5/libraries/p5.play.js"></script>
