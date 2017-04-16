@@ -7,14 +7,15 @@
     <title>Ninja Game</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <link rel="stylesheet" href="style/main.css" />
-
     <!-- Jquery, Scrollify and p5 CDN -->
     <script src="https://code.jquery.com/jquery-1.11.1.min.js" integrity="sha256-VAvG3sHdS5LqTT+5A/aeq/bZGa/Uj04xKxY8KM/w9EE=" crossorigin="anonymous"></script>
     <script src=https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.14/jquery.scrollify.min.js></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.8/p5.js"></script>
 
-	 <script language="javascript" type="text/javascript" src="p5/libraries/p5.sound.js"></script>
+    <link rel="stylesheet" href="style/main.css" />
+    <link href="https://fonts.googleapis.com/css?family=Bungee+Shade" rel="stylesheet">
+
+	  <script language="javascript" type="text/javascript" src="p5/libraries/p5.sound.js"></script>
     <script src="p5/libraries/p5.play.js"></script>
     <script src="p5/libraries/p5.dom.js"></script>
 
@@ -24,21 +25,23 @@
     <script src="js/Pickup.js"></script>
     <script src="js/Enemy.js"></script>
     <script src="script/main.js"></script>
-    
+
 
 </head>
 
 <body>
     <section class="panel home" data-section-name="home">
-        
+
         <img id="logo" src="assets/oamk_logo.png" alt="oamk logo">
         <div class="inner">
             <div class="vertical-center">
-                <p></p>
-                <a href="#overview" class="scroll">Scroll for more</a>
+                <h2>Ninja Game</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit maecenas convallis</p>
+  				      <p>condimentum egestas sed tristique egestas dignissim</p>
+                <a href="#play" class="scroll"></a>
             </div>
-            
         </div>
+
         <ul class="pagination">
             <li><a href="#home" class="active"><span class="hover-text">Home</span></a></li>
             <li><a href="#play"><span class="hover-text">Play</span></a></li>
@@ -57,9 +60,8 @@
     <section class="panel stats" data-section-name="stats">
         <div class="inner">
             <div class="vertical-center">
-                <h2>Stats</h2>
                 <?php
-                    include "php/connection.php"; 
+                    include "php/connection.php";
                 ?>
 
                 <h2>High scores</h2>

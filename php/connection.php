@@ -3,7 +3,7 @@
 	{
 	 $dsn = "mysql:host=localhost;dbname=highscores";
 	 $db = new PDO ($dsn, "webuser", "webpass");
-	 print ("Connected\n");
+	 //print ("Connected\n");
 	}
 	catch (PDOException $e)
 	{
