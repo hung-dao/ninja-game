@@ -13,6 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.8/p5.js"></script>
 
     <link rel="stylesheet" href="style/main.css" />
+    <link rel="stylesheet" href="style/dialog.css" />
     <link href="https://fonts.googleapis.com/css?family=Bungee|Bungee+Shade|Roboto:400,400i" rel="stylesheet">
 
 	  <script language="javascript" type="text/javascript" src="p5/libraries/p5.sound.js"></script>
@@ -51,10 +52,21 @@
     </section>
 
     <section class="panel play" data-section-name="play">
+        <div id="dialogoverlay"></div>
+        <div id="dialogbox">
+          <div>
+            <div id="dialogboxhead"></div>
+            <div id="dialogboxbody"></div>
+            <div id="dialogboxfoot"></div>
+          </div>
+        </div>
+        
         <div class="inner">
             <div class="vertical-center" id="canvas-holder">
-            </div>
+            </div>    
         </div>
+        
+        
     </section>
 
     <section class="panel stats" data-section-name="stats">
