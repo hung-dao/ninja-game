@@ -15,4 +15,7 @@ $(function() {
   $(".pagination a").on("click",function() {
     $.scrollify.move($(this).attr("href"));
   });
+  $(".scroll").on("click",function() {
+    $.scrollify.move("#play");
+  });
 });

@@ -1,9 +1,9 @@
 <?php
 	try
 	{
-	 $dsn = "mysql:host=localhost;dbname=highscores";
-	 $db = new PDO ($dsn, "webuser", "webpass");
-	 print ("Connected\n");
+	 $dsn = "mysql:host=mysli.oamk.fi;dbname=opisk_t6bada00";
+	 $db = new PDO ($dsn, "t6bada00", "ninja-game");
+	 //print ("Connected\n");
 	}
 	catch (PDOException $e)
 	{
@@ -12,3 +12,4 @@
 	 print ("Error message: " . $e->getMessage () . "\n");
 	}
 	?>
+
