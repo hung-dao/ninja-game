@@ -276,4 +276,10 @@ table th {
 table th.last {
   border-right: none;
 }
+#canvas-holder {
+	position: relative;
+  max-width: 1024px;
+  min-width: 50px;
+  margin: 0 auto;
+}
 /* ------------------------------- */
