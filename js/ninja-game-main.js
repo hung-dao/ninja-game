@@ -205,28 +205,45 @@ function showMenu()
 		var start_button = rect(width/2 - 400/2, height/3 - 60/2, 400, 60, 10);
 		var change_level_button = rect(width/2 - 400/2, height/3 + 100 - 60/2, 400, 60, 10);
 		var change_difficulty_button = rect(width/2 - 400/2, height/3 + 200 - 60/2, 400, 60, 10);
+		
+		fill(0);
+		noStroke();
+		textSize(36);
+		text("Play", width/2 - 400/2, height/3 - 60/2, 400, 60);
+		text("Change Difficulty", width/2 - 400/2, height/3 +100 - 60/2, 400, 60);
+		text("Change Level", width/2 - 400/2, height/3 +200 - 60/2, 400, 60);
+
 	}
 	
 	else if (menu_position == 3)
 	{
 		var easy_btn = rect(width/4 - 180/2, height/2 - 60/2, 180, 60, 10);
-		text("Play", width/4 - 180/2, height/2 - 60/2);
 		var medium_btn = rect(width/2 - 180/2, height/2 - 60/2, 180, 60, 10);
 		var hard_btn = rect(width*3/4 - 180/2, height/2 - 60/2, 180, 60, 10);
 		
 		var back_btn = rect(50,50,100,50,50);
+		
+		fill(0);
+		noStroke();
+		textSize(36);
+		text("Easy", width/4 - 180/2, height/2 - 60/2, 180, 60);
+		text("Medium", width/2 - 180/2, height/2 - 60/2, 180, 60);
+		text("Hard", width*3/4 - 180/2, height/2 - 60/2, 180, 60);
+		text("Back", 50,50,100,50);
+		
 	}
 	else if (menu_position == 4)
 	{
 		var levels = [];
 		var current_x = width/4 - 180/2 ;
-		var current_y = height/3 - 60/2;
+		var current_y = height/3 - 180/2;
 		for (var i = 0; i < 6; i ++)
 		{
-			levels.push = rect(current_x , current_y, 180, 60 );
-			current_x += width/3 ;
+			levels.push(rect(current_x , current_y, 180, 120 ));
+			current_x *= 2 ;
 			if ( levels.length == 3)
 			{
+				current_x = width/4 - 180/2;
 				current_y = height/2 - 60/2 ;
 			}
 		}
@@ -258,7 +275,7 @@ function CustomPrompt(){
 	this.ok = function(){
 		prompt_value1 = document.getElementById('prompt_value1').value;
 		console.log(prompt_value1);
-		getName(prompt_value1);
+  		 name = prompt_value1;
 		document.getElementById('dialogbox').style.display = "none";
 		document.getElementById('dialogoverlay').style.display = "none";
 		var xmlhttp = new XMLHttpRequest();
@@ -266,16 +283,6 @@ function CustomPrompt(){
 		xmlhttp.send();
 		   
 	}
-}
-
-function getName()
-{
-   name = prompt_value1;
-}
-
-function showLevelMenu()
-{
-	
 }
 
 function showGameScreen()
@@ -462,7 +469,7 @@ function mousePressed()
 		{
 			difficulty = 3 ;
 		}
-		else if ( mouseX > 50 && mouseX < 100 && mouseY > 50 && mouseY < 100)
+		else if ( mouseX > 50 && mouseX < 150 && mouseY > 50 && mouseY < 100)
 		{
 			menu_position = 1;
 		}
