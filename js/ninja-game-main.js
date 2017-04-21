@@ -7,7 +7,6 @@ var prompt_value1;
 var current_screen ;
 var current_screen ;
 var played_once = false ;
-var currently_playing = false;
 var ratio_x = 1;
 var ratio_y = 1;
 var full_screen_button ;
@@ -103,6 +102,7 @@ function setup()
 
 function draw()
 {
+	console.log(menu_position);
 	if (menu_position == 0)
 	{
 		background(0);
@@ -112,13 +112,13 @@ function draw()
 		textFont("Times New Roman");
 		text( "CLICK TO START", 400, 300);
 	}
-	else if (currently_playing == false )
+	else if (menu_position != 2)
 	{
 		if (!menu_music.isPlaying())
 		{
 			menu_music.loop();
 		}
-		showStartScreen();
+		showMenu();
   	}
 	else
 	{
@@ -163,38 +163,9 @@ function initialize_game()
 		coins.push(new Coin());
 	}
 	
-	kunai_interval  = setInterval(kunai_creation, 10000) ;
-	katana_interval = setInterval(katana_creation, 5000) ;
+	kunai_interval  = setInterval(kunai_creation, 10000 ) ;
+	katana_interval = setInterval(katana_creation, 20000 ) ;
 	health_interval = setInterval(health_creation, 10000) ;
-	
-	currently_playing = true;
-}
-
-function showStartScreen() 
-{
-	background(menu_background);
-	noStroke();
-	fill(0);
-	textAlign(CENTER);
-	textSize(50);
-	
-	if (played_once == false)
-	{
-		showMenu();
-
-	}
-	else
-	{
-		menu_position = 5;
-		
-		text( "PRESS CTRL TO PLAY", 400, 500);
-	}
-	
-	
-	if (keyCode == CONTROL)
-	{
-		initialize_game() ;
-	}
 }
 
 function showMenu()
@@ -251,6 +222,19 @@ function showMenu()
 			}
 		}
 	}
+	else if (menu_position == 5)
+	{
+		var go_to_menu_btn = rect(50,50,100,50,50) ;
+		text("Back", 50,50,100,50);
+		textSize(50);
+		text( "PRESS CTRL TO PLAY", 400, 500);	
+	
+		if (keyCode == CONTROL)
+		{
+			menu_position = 2;
+			initialize_game() ;
+		}
+	}
 }
 
 
@@ -291,7 +275,6 @@ function CustomPrompt(){
 function showGameScreen()
 {
 	background(game_background) ;
-	
 	image(game_background, background_x, 0);
 	background_x -= 1;
 	image(game_background, background_x+game_background.width, 0)
@@ -361,13 +344,11 @@ function showGameScreen()
 		{
 			score = Math.floor(player_ninja.score);
 			
-         //name = prompt("Game over. Your score is " + score + ". Please enter your name: ", "");
-         background(0);
          Prompt.render('Type in your name:');
 		   console.log(name);
 			
+			menu_position = 5 ;
 			played_once = true;
-			currently_playing = false ;
 		}
 	}
 
@@ -465,14 +446,25 @@ function mousePressed()
 		else if ( mouseX > width/2 - 180/2 && mouseX < width/2 - 180/2 + 180
 			&& mouseY > height/2 - 60/2 && mouseY < height/2 - 60/2 + 60)
 		{
-			difficulty = 2 ;
+			difficulty = 1.25 ;
 		}		
 		else if ( mouseX > width*3/4 - 180/2 && mouseX < width*3/4 - 180/2 + 180
 			&& mouseY > height/2 - 60/2 && mouseY < height/2 - 60/2 + 60)
 		{
-			difficulty = 3 ;
+			difficulty = 1.5 ;
 		}
 		else if ( mouseX > 50 && mouseX < 150 && mouseY > 50 && mouseY < 100)
+		{
+			menu_position = 1;
+		}
+	}
+	else if (menu_position == 4)
+	{
+		
+	}
+	else if (menu_position == 5)
+	{
+		if ( mouseX > 50 && mouseX < 150 && mouseY > 50 && mouseY < 100)
 		{
 			menu_position = 1;
 		}

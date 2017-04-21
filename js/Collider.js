@@ -2,7 +2,7 @@ function Collider()
 {
 	this.x = random (800, 1600) ;
 	this.y = random(0, 565) ;
-	this.speed ;
+	this.speed = this.speed ;
 	
 	this.show = function()
 	{
