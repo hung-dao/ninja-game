@@ -2,6 +2,7 @@ var canvas ;
 var context ;
 var menu_position = 0;
 var difficulty = 1;
+var prompt_value1;
 
 var current_screen ;
 var current_screen ;
@@ -10,6 +11,7 @@ var currently_playing = false;
 var ratio_x = 1;
 var ratio_y = 1;
 var full_screen_button ;
+var Prompt = new CustomPrompt();
 
 var score;
 var name;
@@ -101,7 +103,6 @@ function setup()
 
 function draw()
 {
-	console.log(menu_position);
 	if (menu_position == 0)
 	{
 		background(0);
@@ -209,17 +210,33 @@ function showMenu()
 	else if (menu_position == 3)
 	{
 		var easy_btn = rect(width/4 - 180/2, height/2 - 60/2, 180, 60, 10);
+		text("Play", width/4 - 180/2, height/2 - 60/2);
 		var medium_btn = rect(width/2 - 180/2, height/2 - 60/2, 180, 60, 10);
 		var hard_btn = rect(width*3/4 - 180/2, height/2 - 60/2, 180, 60, 10);
 		
 		var back_btn = rect(50,50,100,50,50);
+	}
+	else if (menu_position == 4)
+	{
+		var levels = [];
+		var current_x = width/4 - 180/2 ;
+		var current_y = height/3 - 60/2;
+		for (var i = 0; i < 6; i ++)
+		{
+			levels.push = rect(current_x , current_y, 180, 60 );
+			current_x += width/3 ;
+			if ( levels.length == 3)
+			{
+				current_y = height/2 - 60/2 ;
+			}
+		}
 	}
 }
 
 
 function CustomPrompt(){
 	   
-    this.render = function(dialog,func){
+    this.render = function(dialog){
 		var winW = window.innerWidth;
 	    var winH = window.innerHeight;
 		var dialogoverlay = document.getElementById('dialogoverlay');
@@ -232,24 +249,28 @@ function CustomPrompt(){
 		document.getElementById('dialogboxhead').innerHTML = "Game over. Your score is " + score + ".";
 	    document.getElementById('dialogboxbody').innerHTML = dialog;
 		document.getElementById('dialogboxbody').innerHTML += '<br><input id="prompt_value1">';
-		document.getElementById('dialogboxfoot').innerHTML = '<button onclick="Prompt.ok(\''+func+'\')">OK</button> <button onclick="Prompt.cancel()">Cancel</button>';
+		document.getElementById('dialogboxfoot').innerHTML = '<button onclick="Prompt.ok()">OK</button> <button onclick="Prompt.cancel()">Cancel</button>';
 	}
 	this.cancel = function(){
 		document.getElementById('dialogbox').style.display = "none";
 		document.getElementById('dialogoverlay').style.display = "none";
 	}
-	this.ok = function(func){
-		var prompt_value1 = document.getElementById('prompt_value1').value;
-		window[func](prompt_value1);
+	this.ok = function(){
+		prompt_value1 = document.getElementById('prompt_value1').value;
+		console.log(prompt_value1);
+		getName(prompt_value1);
 		document.getElementById('dialogbox').style.display = "none";
 		document.getElementById('dialogoverlay').style.display = "none";
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("GET", "./php/test.php?name=" + name + "&score=" + score, true);
+		xmlhttp.send();
+		   
 	}
 }
-var Prompt = new CustomPrompt();
 
-function getName(something)
+function getName()
 {
-    name = something;
+   name = prompt_value1;
 }
 
 function showLevelMenu()
@@ -326,26 +347,18 @@ function showGameScreen()
 	if (player_ninja.health <= 0) //if health is less than or equal to zero SHOW GAME OVER AND RESTART SCREEN
 	{
 		background_sound.stop();
-        
-		
-        if (player_ninja.y >= 650)
+      if (player_ninja.y >= 650)
 		{
 			score = Math.floor(player_ninja.score);
 			
-            //name = prompt("Game over. Your score is " + score + ". Please enter your name: ", "");
-            background(0);
-            Prompt.render('Type in your name:','getName');
-		   
-			var xmlhttp = new XMLHttpRequest();
+         //name = prompt("Game over. Your score is " + score + ". Please enter your name: ", "");
+         background(0);
+         Prompt.render('Type in your name:');
+		   console.log(name);
 			
-			xmlhttp.open("GET", "./php/test.php?name=" + name + "&score=" + score, true);
-			xmlhttp.send();
-		   
 			played_once = true;
 			currently_playing = false ;
 		}
-        
-        
 	}
 
 	for (var i = 0; i < shurikens.length; i ++)
@@ -453,6 +466,5 @@ function mousePressed()
 		{
 			menu_position = 1;
 		}
-		console.log(difficulty);
 	}
 }

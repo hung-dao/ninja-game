@@ -84,7 +84,7 @@
 
                 <?php
 
-                        $myquery="SELECT name, score FROM scores order by score desc limit 5";
+                        $myquery="SELECT name, score FROM scores order by score desc limit 10";
                         $high_scores=$db->query($myquery);
                         foreach ($high_scores as $row) {
                             echo '<tr><td>'.$row['name'].'</td><td>'.$row['score'].'</td>';
