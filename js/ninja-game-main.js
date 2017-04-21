@@ -181,14 +181,17 @@ function showStartScreen()
 	if (played_once == false)
 	{
 		showMenu();
+
 	}
 	else
 	{
 		menu_position = 5;
-		text( "YOU DIED! \n PRESS ANY KEY TO RESTART", 400, 500);	
+		
+		text( "PRESS CTRL TO PLAY", 400, 500);
 	}
 	
-	if (keyCode == ENTER)
+	
+	if (keyCode == CONTROL)
 	{
 		initialize_game() ;
 	}
