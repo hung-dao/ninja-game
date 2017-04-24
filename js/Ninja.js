@@ -101,7 +101,7 @@ function Ninja()
 				this.x += 5 ;
 			}
 			
-			if (keyIsDown(20))
+			if (keyIsDown(32))
 			{
 				this.health = 0;
 			}

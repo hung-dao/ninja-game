@@ -1,14 +1,16 @@
 var canvas ;
 var context ;
-var first_time_started = false ;
+var menu_position = 0;
+var difficulty = 1;
+var prompt_value1;
 
 var current_screen ;
 var current_screen ;
 var played_once = false ;
-var startGame = false;
 var ratio_x = 1;
 var ratio_y = 1;
 var full_screen_button ;
+var Prompt = new CustomPrompt();
 
 var score;
 var name;
@@ -49,7 +51,9 @@ var health_audio ;
 var coin_audio ;
 var background_sound ;
 var died_sound ;
+var menu_music ;
 
+var font;
 function preload()
 {	
    menu_background = loadImage("assets/ninja.gif") ;
@@ -71,24 +75,20 @@ function preload()
 	
 	
 	heart = loadAnimation('assets/sprites/pickups/heart.png') ;
-	coin_rotate = loadAnimation('assets/sprites/pickups/coin1.png', 'assets/sprites/pickups/coin2.png',
-										 'assets/sprites/pickups/coin3.png', 'assets/sprites/pickups/coin4.png',
-										 'assets/sprites/pickups/coin5.png', 'assets/sprites/pickups/coin6.png',
-										 'assets/sprites/pickups/coin7.png', 'assets/sprites/pickups/coin8.png',
-										 'assets/sprites/pickups/coin9.png', 'assets/sprites/pickups/coin10.png',
-										 'assets/sprites/pickups/coin11.png', 'assets/sprites/pickups/coin12.png') ;
+	coin_rotate = loadAnimation('assets/sprites/pickups/coin1.png','assets/sprites/pickups/coin12.png') ;
 	
 	hit_enemy = loadSound('sounds/01.ogg');
 	health_audio = loadSound('sounds/06.ogg') ;
 	coin_audio = loadSound('sounds/07.ogg');
 	background_sound = loadSound('sounds/HeroImmortal.mp3');
+	menu_music = loadSound('sounds/chinese_stock_car_dealer.ogg');	
 }
 
 function setup()
 {
 	canvas = createCanvas(800, 600);
-	
-	canvas.id('game_canvas');
+    
+    canvas.id('game_canvas');
 	canvas.parent('canvas-holder');
 	
 	//full_screen_button = createButton('fullscreen');
@@ -98,31 +98,39 @@ function setup()
 	
 	background_x = 0;
 	background_sound.setVolume(0.2);
-	background_sound.loop();
 }
 
 function draw()
 {
-	if (!first_time_started)
+	console.log(menu_position);
+	if (menu_position == 0)
 	{
 		background(0);
 		textAlign(CENTER);
 		textSize(50);
 		fill(255);
+		textFont("Times New Roman");
 		text( "CLICK TO START", 400, 300);
 	}
-	else if (startGame == false && first_time_started == true)
+	else if (menu_position != 2)
 	{
-		showStartScreen();
+		if (!menu_music.isPlaying())
+		{
+			menu_music.loop();
+		}
+		showMenu();
   	}
 	else
 	{
+		menu_music.stop();
 		showGameScreen();
 	}
 }
 
 function initialize_game()
 {
+	background_sound.loop();
+	
 	if (played_once)
 	{
 		for (var i = 0; i < shurikens.length; i ++)
@@ -155,35 +163,9 @@ function initialize_game()
 		coins.push(new Coin());
 	}
 	
-	kunai_interval  = setInterval(kunai_creation, 10000) ;
-	katana_interval = setInterval(katana_creation, 5000) ;
+	kunai_interval  = setInterval(kunai_creation, 10000 ) ;
+	katana_interval = setInterval(katana_creation, 20000 ) ;
 	health_interval = setInterval(health_creation, 10000) ;
-}
-
-function showStartScreen() 
-{
-	background(menu_background);
-	noStroke();
-	fill(0);
-	
-	textAlign(CENTER);
-	textSize(50);
-	
-	if (played_once == false)
-	{
-		showMenu();
-		//text( "PRESS ANY KEY TO PLAY", 400, 550);
-	}
-	else
-	{
-		text( "YOU DIED! \n PRESS ANY KEY TO RESTART", 400, 550);	
-	}
-	
-	if (keyIsPressed)
-	{
-		initialize_game() ;
-		startGame = true;
-	}
 }
 
 function showMenu()
@@ -192,19 +174,110 @@ function showMenu()
 	strokeWeight(4);
 	stroke(120);
 	fill(255);
-	var start_button = rect(width/2 - 400/2, height/3 - 60/2, 400, 60, 10);
-	var change_level_button = rect(width/2 - 400/2, height/3 + 100 - 60/2, 400, 60, 10);
-	var change_difficulty_button = rect(width/2 - 400/2, height/3 + 200 - 60/2, 400, 60, 10);
+	if (menu_position == 1)
+	{
+		var start_button = rect(width/2 - 400/2, height/3 - 60/2, 400, 60, 10);
+		var change_level_button = rect(width/2 - 400/2, height/3 + 100 - 60/2, 400, 60, 10);
+		var change_difficulty_button = rect(width/2 - 400/2, height/3 + 200 - 60/2, 400, 60, 10);
+		
+		fill(0);
+		noStroke();
+		textSize(36);
+		text("Play", width/2 - 400/2, height/3 - 60/2, 400, 60);
+		text("Change Difficulty", width/2 - 400/2, height/3 +100 - 60/2, 400, 60);
+		text("Change Level", width/2 - 400/2, height/3 +200 - 60/2, 400, 60);
+
+	}
+	
+	else if (menu_position == 3)
+	{
+		var easy_btn = rect(width/4 - 180/2, height/2 - 60/2, 180, 60, 10);
+		var medium_btn = rect(width/2 - 180/2, height/2 - 60/2, 180, 60, 10);
+		var hard_btn = rect(width*3/4 - 180/2, height/2 - 60/2, 180, 60, 10);
+		
+		var back_btn = rect(50,50,100,50,50);
+		
+		fill(0);
+		noStroke();
+		textSize(36);
+		text("Easy", width/4 - 180/2, height/2 - 60/2, 180, 60);
+		text("Medium", width/2 - 180/2, height/2 - 60/2, 180, 60);
+		text("Hard", width*3/4 - 180/2, height/2 - 60/2, 180, 60);
+		text("Back", 50,50,100,50);
+		
+	}
+	else if (menu_position == 4)
+	{
+		var levels = [];
+		var current_x = width/4 - 180/2 ;
+		var current_y = height/3 - 180/2;
+		for (var i = 0; i < 6; i ++)
+		{
+			levels.push(rect(current_x , current_y, 180, 120 ));
+			current_x *= 2 ;
+			if ( levels.length == 3)
+			{
+				current_x = width/4 - 180/2;
+				current_y = height/2 - 60/2 ;
+			}
+		}
+	}
+	else if (menu_position == 5)
+	{
+		var go_to_menu_btn = rect(50,50,100,50,50) ;
+		text("Back", 50,50,100,50);
+		textSize(50);
+		text( "PRESS CTRL TO PLAY", 400, 500);	
+	
+		if (keyCode == CONTROL)
+		{
+			menu_position = 2;
+			initialize_game() ;
+		}
+	}
+}
+
+
+function CustomPrompt(){
+	   
+    this.render = function(dialog){
+		var winW = window.innerWidth;
+	    var winH = window.innerHeight;
+		var dialogoverlay = document.getElementById('dialogoverlay');
+	    var dialogbox = document.getElementById('dialogbox');
+		dialogoverlay.style.display = "block";
+	    dialogoverlay.style.height = winH+"px";
+		dialogbox.style.left = (winW/2) - (550 * .5)+"px";
+	    dialogbox.style.top = "100px";
+	    dialogbox.style.display = "block";
+		document.getElementById('dialogboxhead').innerHTML = "Game over. Your score is " + score + ".";
+	    document.getElementById('dialogboxbody').innerHTML = dialog;
+		document.getElementById('dialogboxbody').innerHTML += '<br><input id="prompt_value1">';
+		document.getElementById('dialogboxfoot').innerHTML = '<button onclick="Prompt.ok()">OK</button> <button onclick="Prompt.cancel()">Cancel</button>';
+	}
+	this.cancel = function(){
+		document.getElementById('dialogbox').style.display = "none";
+		document.getElementById('dialogoverlay').style.display = "none";
+	}
+	this.ok = function(){
+		prompt_value1 = document.getElementById('prompt_value1').value;
+		console.log(prompt_value1);
+  		 name = prompt_value1;
+		document.getElementById('dialogbox').style.display = "none";
+		document.getElementById('dialogoverlay').style.display = "none";
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("GET", "./php/test.php?name=" + name + "&score=" + score, true);
+		xmlhttp.send();
+		   
+	}
 }
 
 function showGameScreen()
 {
 	background(game_background) ;
-	
 	image(game_background, background_x, 0);
 	background_x -= 1;
-	image(game_background, background_x+game_background.width, 0);
-	
+	image(game_background, background_x+game_background.width, 0)
 	if(background_x == -(game_background.width))
 	{
 		background_x = 0;
@@ -267,18 +340,15 @@ function showGameScreen()
 	if (player_ninja.health <= 0) //if health is less than or equal to zero SHOW GAME OVER AND RESTART SCREEN
 	{
 		background_sound.stop();
-		if (player_ninja.y >= 650)
+      if (player_ninja.y >= 650)
 		{
 			score = Math.floor(player_ninja.score);
-			name = prompt("Game over. Your score is " + score + ". Please enter your name: ", "");
-		   
-			var xmlhttp = new XMLHttpRequest();
 			
-			xmlhttp.open("GET", "./php/test.php?name=" + name + "&score=" + score, true);
-			xmlhttp.send();
-		   
+         Prompt.render('Type in your name:');
+		   console.log(name);
+			
+			menu_position = 5 ;
 			played_once = true;
-			startGame = false ;
 		}
 	}
 
@@ -341,9 +411,62 @@ function health_creation()
 
 function mousePressed()
 {
-	if ( mouseX > 0 && mouseX < 800 
-		&& mouseY < 600 && mouseY > 0)
+	if ( menu_position == 0 && mouseX > 0 && mouseX < canvas.width 
+		&& mouseY < canvas.height && mouseY > 0)
 	{
-		first_time_started = true;		
+		menu_position = 1;
+	}
+	
+	else if (menu_position == 1)
+	{
+		if ( mouseX > width/2 - 400/2 && mouseX < (width/2 - 400/2 + 400)
+			&& mouseY > height/3 - 60/2 && mouseY < (height/3 -60/2 + 60))
+		{
+			menu_position = 2;
+			initialize_game();
+		}		
+		else if ( mouseX > width/2 - 400/2 && mouseX < (width/2 - 400/2 + 400)
+			&& mouseY > (height/3 - 60/2 + 100) && mouseY < (height/3 -60/2 + 60 + 100))
+		{
+			menu_position = 3;
+		}		
+		else if ( mouseX > width/2 - 400/2 && mouseX < (width/2 - 400/2 + 400)
+			&& mouseY > (height/3 - 60/2 + 200) && mouseY < (height/3 -60/2 + 60 + 200))
+		{	
+			menu_position = 4;
+		}
+	}
+	else if (menu_position == 3)
+	{
+		if ( mouseX > width/4 - 180/2 && mouseX < width/4 - 180/2 + 180
+			&& mouseY > height/2 - 60/2 && mouseY < height/2 - 60/2 + 60)
+		{
+			difficulty = 1 ;
+		}		
+		else if ( mouseX > width/2 - 180/2 && mouseX < width/2 - 180/2 + 180
+			&& mouseY > height/2 - 60/2 && mouseY < height/2 - 60/2 + 60)
+		{
+			difficulty = 1.25 ;
+		}		
+		else if ( mouseX > width*3/4 - 180/2 && mouseX < width*3/4 - 180/2 + 180
+			&& mouseY > height/2 - 60/2 && mouseY < height/2 - 60/2 + 60)
+		{
+			difficulty = 1.5 ;
+		}
+		else if ( mouseX > 50 && mouseX < 150 && mouseY > 50 && mouseY < 100)
+		{
+			menu_position = 1;
+		}
+	}
+	else if (menu_position == 4)
+	{
+		
+	}
+	else if (menu_position == 5)
+	{
+		if ( mouseX > 50 && mouseX < 150 && mouseY > 50 && mouseY < 100)
+		{
+			menu_position = 1;
+		}
 	}
 }
