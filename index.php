@@ -13,9 +13,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.8/p5.js"></script>
 
     <link rel="stylesheet" href="style/main.css" />
+    <link rel="stylesheet" href="style/profilecard.css" />
+    <link rel="stylesheet" href="style/animate.css" />
+
     <link href="https://fonts.googleapis.com/css?family=Bungee|Bungee+Shade|Roboto:400,400i" rel="stylesheet">
 
-	  <script language="javascript" type="text/javascript" src="p5/libraries/p5.sound.js"></script>
+    <script language="javascript" type="text/javascript" src="p5/libraries/p5.sound.js"></script>
     <script src="p5/libraries/p5.play.js"></script>
     <script src="p5/libraries/p5.dom.js"></script>
 
@@ -35,9 +38,9 @@
         <img id="logo" src="assets/oamk_logo.png" alt="oamk logo">
         <div class="inner">
             <div class="vertical-center">
-                <h2>Ninja Game</h2>
+                <h2 class="animated fadeInDownBig">Ninja Game</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipiscing elit maecenas convallis</p>
-  				      <p>condimentum egestas sed tristique egestas dignissim</p>
+                <p>condimentum egestas sed tristique egestas dignissim</p>
                 <a href="#play" class="scroll"></a>
             </div>
         </div>
@@ -64,13 +67,14 @@
                     include "php/connection.php";
                 ?>
 
-                <h2>High scores</h2>
-                <table border="1">
-                <tr>
-                    <TH>Name</TH><TH>Score</TH>
-                </tr>
+                    <h2>High scores</h2>
+                    <table border="1">
+                        <tr>
+                            <TH>Name</TH>
+                            <TH>Score</TH>
+                        </tr>
 
-                <?php
+                        <?php
 
                         $myquery="SELECT name, score FROM scores order by score desc limit 5";
                         $high_scores=$db->query($myquery);
@@ -79,15 +83,51 @@
                             echo '</tr>';
                         }
                 ?>
-                </table>
+                    </table>
             </div>
         </div>
     </section>
 
     <section class="panel about" data-section-name="about">
-        <div class="inner">
+        <div class="inner profiles">
             <div class="vertical-center">
-                <h2>About</h2>
+                <h2>About Us</h2>
+                <figure class="profileCard">
+                    <div class="profile-image"><img src="assets/profile/dair.jpg" alt="sample47" /></div>
+                    <figcaption>
+                        <h3>Dair Baidauletov</h3>
+                        <h4>Founder</h4>
+                        <p>Which is worse, that everyone has his price, or that the price is always so low.</p>
+                        <div class="icons"><a href="https://www.facebook.com/dair.baidauletov"><i class="fa fa-facebook-official"></i></a>
+                            <a href="https://github.com/dairbuirabass"> <i class="fa fa-github"></i></a>
+                            <a href="mailto:dair.baidauletov@gmail.com.com"> <i class="fa fa-envelope"></i></a>
+                        </div>
+                    </figcaption>
+                </figure>
+                <figure class="profileCard">
+                    <div class="profile-image"><img src="assets/profile/fayjus.jpg" alt="sample47" /></div>
+                    <figcaption>
+                        <h3>Fayjus Salehin</h3>
+                        <h4>Web Designer</h4>
+                        <p>I'm killing time while I wait for life to shower me with meaning and happiness.</p>
+                        <div class="icons"><a href="https://www.facebook.com/fayjusss"><i class="fa fa-facebook-official"></i></a>
+                            <a href="https://github.com/fayjusss"> <i class="fa fa-github"></i></a>
+                            <a href="mailto:fsalehin@live.com"> <i class="fa fa-envelope"></i></a>
+                        </div>
+                    </figcaption>
+                </figure>
+                <figure class="profileCard">
+                    <div class="profile-image"><img src="assets/profile/hung.jpg" alt="sample47" /></div>
+                    <figcaption>
+                        <h3>Hung Dao</h3>
+                        <h4>Public Relations</h4>
+                        <p>The only skills I have the patience to learn are those that have no real application in life. </p>
+                        <div class="icons"><a href="https://www.facebook.com/hung.dao.nt"><i class="fa fa-facebook-official"></i></a>
+                            <a href="https://github.com/hungntdao"> <i class="fa fa-github"></i></a>
+                            <a href="#about"> <i class="fa fa-envelope"></i></a>
+                        </div>
+                    </figcaption>
+                </figure>
             </div>
         </div>
     </section>
