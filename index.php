@@ -28,6 +28,7 @@
     <script src="js/Collider.js"></script>
     <script src="js/Pickup.js"></script>
     <script src="js/Enemy.js"></script>
+    <script src="js/CustomPrompt.js"></script>
     <script src="script/main.js"></script>
 
 
