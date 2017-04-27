@@ -50,17 +50,29 @@ table {
 /****** Main ********/
 
 body {
-	color:white;
+	color:#ffffff;
 	font-size:62.5%;
 	font-family: 'Roboto', sans-serif;
+	font-style: oblique;
 }
 h1 {
 	font-size:13em;
+	font-family: 'Bungee Shade', cursive;
+	color: black;
 }
 h2 {
 	font-size:8em;
-	font-family: 'Bungee Shade', cursive;
+	font-family: 'Bungee', cursive;
+	color: white;
+}
+.about h2{
 	color: black;
+}
+h3 {
+  padding: 40px;
+  font-size:4em;
+  font-family: 'Bungee';
+  color: black;
 }
 p {
 	font-size: 2em;
@@ -89,21 +101,29 @@ p {
   background: -webkit-linear-gradient(left, hsl(32, 100%, 60%), hsl(29, 100%, 51%));
   background: linear-gradient(to right, hsl(32, 100%, 60%), hsl(29, 100%, 51%));
 }
+.instruction {
+	background: #002E40;
+	background: hsl(196.9,100%,7.6%);
+}
 .play {
-	background:#6dcb94;
-	background:hsl(158,58%,52%);
+	background: #002E40;
+	background: hsl(196.9,100%,7.6%);
+
 }
 .stats {
-	background:#64a0d4;
-	background:hsl(200,60%,55%);
+	background: #002E40;
+	background: hsl(196.9,100%,7.6%);
+
+}
+.credits {
+	background: #91BED4
 }
 .about {
-	background:#e14456;
-	background:hsl(350,92%,59%);
+	background: #ff8008;
+  background: -webkit-linear-gradient(left, hsl(32, 100%, 60%), hsl(29, 100%, 51%));
+  background: linear-gradient(to right, hsl(32, 100%, 60%), hsl(29, 100%, 51%));
 }
-.code {
-	background:rgba(0,0,0,0.2);
-}
+
 
 
 .pagination {
@@ -165,14 +185,34 @@ p {
 	text-decoration: underline;
 }
 
+.credits-list
+{
+  padding: 40px;
+  font-size: 2em;
+  line-height:1;
+}
+.credits-list-li
+{
+  font-size: 2em;
+  padding: 2px;
+	color: #304269;
+}
 #game_canvas{
 	width: 100%;
+	border: 2px solid white;
+	border-radius: 5px;
 }
 
 #logo{
 	position: absolute;
 	right: 50px;
 	bottom: 50px;
+}
+#canvas-holder {
+	position: relative;
+  max-width: 1024px;
+  min-width: 50px;
+	margin: 0 auto;
 }
 
 @media (max-width:800px) {
@@ -267,19 +307,14 @@ table th, table td {
   border-collapse: collapse;
 }
 table th {
-	background: #00cccc;
+	background: #FF8008;
 	font-family: 'Bungee', cursive;
   color: #000;
-  text-transform: uppercase;
+  text-transform: uppercase;c
 
 }
 table th.last {
   border-right: none;
 }
-#canvas-holder {
-	position: relative;
-  max-width: 1024px;
-  min-width: 50px;
-  margin: 0 auto;
-}
+
 /* ------------------------------- */
