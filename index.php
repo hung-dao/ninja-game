@@ -41,8 +41,8 @@
         <div class="inner">
             <div class="vertical-center">
                 <h2 class="animated fadeInDownBig">Ninja Game</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit maecenas convallis</p>
-                <p>condimentum egestas sed tristique egestas dignissim</p>
+                <p>A simple web based 2D endless running game</p>
+                <p>made with <span class="fa fa-heart"></span> by a bunch of OAMK students as a first yeart project</p>
                 <a href="#play" class="scroll"></a>
             </div>
         </div>
