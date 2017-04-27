@@ -3,10 +3,13 @@ var context ;
 var menu_position = 0;
 var difficulty = 1;
 var prompt_value1;
+var animation_in_the_beginning;
+var animation_run_x = 400;
 
 var current_screen ;
 var current_screen ;
 var played_once = false ;
+var level_is_chosen = false;
 var ratio_x = 1;
 var ratio_y = 1;
 var full_screen_button ;
@@ -56,6 +59,7 @@ var background_music_3 ;
 var died_sound ;
 var died_sound_2 ;
 var menu_music ;
+var game_background ;
 
 var press_up;
 var press_down;
@@ -71,17 +75,21 @@ function preload()
 	
 	player_run = loadAnimation('assets/sprites/running/01.png', 'assets/sprites/running/02.png',
 									   'assets/sprites/running/03.png', 'assets/sprites/running/04.png',
-									   'assets/sprites/running/05.png', 'assets/sprites/running/06.png') ;
+									   'assets/sprites/running/05.png', 'assets/sprites/running/06.png') ;	
+	player_scared_run = loadAnimation('assets/sprites/scared-running/01.png', 'assets/sprites/scared-running/03.png');
+
 	
 	player_jump = loadAnimation('assets/sprites/jumpfall/jump.png') ;
 	player_fall = loadAnimation('assets/sprites/jumpfall/fall.png') ;
 	player_hit  = loadAnimation('assets/sprites/jumpfall/hit.png') ;
-	player_dead = loadAnimation('assets/sprites/jumpfall/dead.png')
+	player_dead = loadAnimation('assets/sprites/jumpfall/dead.png');
+	player_stand = loadAnimation('assets/sprites/standing/1.png');
+	player_scared = loadAnimation('assets/sprites/scared-running/scared.png');
+	player_super_jump = loadAnimation('assets/sprites/jumpfall/superjump.png');
 	
 	shuriken_sprite = loadAnimation('assets/sprites/enemies/shuriken1.png');
 	katana_sprite   = loadAnimation('assets/sprites/enemies/katana.png') ;
-	kunai_sprite    = loadAnimation('assets/sprites/enemies/kunai.png') ;
-	
+	kunai_sprite    = loadAnimation('assets/sprites/enemies/kunai.png') ;	
 	
 	heart = loadAnimation('assets/sprites/pickups/heart.png') ;
 	coin_rotate = loadAnimation('assets/sprites/pickups/coin1.png','assets/sprites/pickups/coin12.png') ;
@@ -98,7 +106,7 @@ function preload()
 	background_music_1 = loadSound('sounds/game_music_1.ogg');
 	background_music_2 = loadSound('sounds/game_music_2.ogg');
 	background_music_3 = loadSound('sounds/game_music_3.ogg');
-	menu_music = loadSound('sounds/chinese_stock_car_dealer.ogg');	
+	menu_music = loadSound('sounds/EXCELSIOR.ogg');	
 	
 	my_font = loadFont('assets/fonts/8-bit pusab.ttf');
 }
@@ -110,11 +118,6 @@ function setup()
    canvas.id('game_canvas');
 	canvas.parent('canvas-holder');
 	
-	//full_screen_button = createButton('fullscreen');
-	//full_screen_button.parent('canvas-holder');
-	//full_screen_button.position(10,20);
-	//full_screen_button.mousePressed(go_fullscreen);
-	
 	background_x = 0;
 	background_music_current = background_music_1 ;
 	background_music_current.setVolume(0.2);
@@ -122,10 +125,11 @@ function setup()
 
 function draw()
 {
-	console.log(menu_position);
 	if (menu_position == 0)
 	{
 		background(0);
+		animation_in_the_beginning = player_stand;
+		animation(animation_in_the_beginning, 400, 500);
 		textAlign(CENTER);
 		textSize(50);
 		fill(255);
@@ -134,14 +138,28 @@ function draw()
 	}
 	else if (menu_position != 2)
 	{
+
 		if (!menu_music.isPlaying())
 		{
 			menu_music.loop();
 		}
 		showMenu();
+		
+		if (animation_in_the_beginning != null)
+		{
+			console.log("A");
+			animation_in_the_beginning = player_run;
+			animation(animation_in_the_beginning, animation_run_x, 500);
+			animation_run_x += 5;
+			if (animation_run_x >= 820)
+			{
+				animation_in_the_beginning = null;
+			}
+		}
   	}
 	else
 	{
+	
 		menu_music.stop();
 		showGameScreen();
 	}
@@ -149,7 +167,10 @@ function draw()
 
 function initialize_game()
 {
-	game_background = game_backgrounds[Math.floor(Math.random() * 5) + 1];
+	if (level_is_chosen == false)
+	{
+		game_background = game_backgrounds[Math.floor(Math.random() * 5) + 1];
+	}
 	background_music_current.loop();
 	died_sound_2 = death_audio ;
 	
@@ -222,7 +243,7 @@ function showMenu()
 		fill(0);
 		noStroke();
 		textSize(22);
-		text("Play", width/2 - 400/2, height/3 - 60/2, 400, 60);
+		text("Play", width/2 - 400/2 + 5, height/3 - 60/2 + 5, 400, 60);
 		text("Change Difficulty", width/2 - 400/2, height/3 +100 - 60/2, 400, 60);
 		text("Change Level", width/2 - 400/2, height/3 +200 - 60/2, 400, 60);
 
@@ -230,61 +251,107 @@ function showMenu()
 	
 	else if (menu_position == 3)
 	{
+		var difficulty_text ;
 		if (difficulty == 1)
-		{ fill('green');}
+		{ 
+			fill('green');
+			animation(player_run, 400, 420);
+			difficulty_text = "PIECE OF CAKE";
+		}
 		var easy_btn = rect(width/4 - 180/2, height/2 - 60/2, 180, 60, 10);
 		fill(255);
 		if (difficulty == 1.25)
-		{ fill('yellow');}
+		{
+			fill('yellow');
+			animation(player_scared_run, 400, 420);
+			difficulty_text = "HURT ME PLENTY";
+		}
 		var medium_btn = rect(width/2 - 180/2, height/2 - 60/2, 180, 60, 10);
 		fill(255);
 		if (difficulty == 1.5)
-		{ fill('red');}
+		{
+			fill('red');
+			animation(player_scared, 400, 420);
+			difficulty_text = "LAST SAMURAI...";
+		}
 		var hard_btn = rect(width*3/4 - 180/2, height/2 - 60/2, 180, 60, 10);
 		fill(255);
-		var back_btn = rect(50,50,100,50,50);
+		noStroke();
+		var back_btn = rect(50,50,100,50,30);
 		
 		fill(0);
-		noStroke();
 		textSize(24);		
 		text("Easy", width/4 - 180/2, height/2 - 60/2, 180, 60);
 		text("Medium", width/2 - 180/2, height/2 - 60/2, 180, 60);
 		text("Hard", width*3/4 - 180/2, height/2 - 60/2, 180, 60);
+		textSize(18);
 		text("Back", 50,50,100,50);
+		fill(255);
+		text("Click to choose difficulty", 0, height/2 - 100, 800, 100);
+		fill('green');
+		text(difficulty_text, 0, height-100, 800, 150);
 		
 	}
 	else if (menu_position == 4)
 	{		
-		var back_btn = rect(50,50,100,50,50);
 		
 		var levels = [];
-		var current_x = width/4 - 180/2 ;
-		var current_y = height/3 - 180/2;
+		var current_x = 42.5 ;
+		var current_y = height/3 - 70;
+		var chosen_level_number ;
 		for (var i = 0; i < 6; i ++)
 		{
-			levels.push(rect(current_x , current_y, 180, 120 ));
-			current_x += 200 ;
+
+			
+			levels.push(rect(current_x , current_y, 210, 140 ));
+			image(game_backgrounds[i], current_x, current_y, 210, 140);
+			if (game_background == game_backgrounds[i])
+			{
+				chosen_level_number = i+1;
+				fill(0,255,0,50);
+				rect(current_x, current_y, 210, 140);
+				fill(255);
+			}
+			
+			current_x += 252.5 ;
 			if ( levels.length == 3)
 			{
-				current_x = width/4 - 180/2;
-				current_y = height/2 - 60/2 ;
+				current_x = 42.5;
+				current_y = height/2 ;
 			}
+
 		}
+		noStroke();
+		var back_btn = rect(50,50,100,50,30);
 		
 		fill(0);
-		noStroke();
-		textSize(24);		
+		textSize(18);		
 		text("Back", 50,50,100,50);
+		textSize(24);
+		fill(255);
+		text("Press on image to select level", 0, height/2+170, 800, 200);
+		if ( level_is_chosen == true)
+		{
+			fill(0,255,0, 95);
+			text("Current Level is #" + chosen_level_number, 0, height/2+220, 800, 200);
+		}
 	}
 	else if (menu_position == 5)
 	{
-		textFont(my_font);
-		var go_to_menu_btn = rect(50,50,100,50,50) ;
-		text("Back", 50,50,100,50);
+		animation(player_super_jump, 400, height/2 - 150);
+		noStroke();
+		textSize(24);
+		fill(255);
+		var go_to_menu_btn = rect(50,50,100,50,10) ;
 		textSize(50);
-		text( "PRESS CTRL TO PLAY", 400, 500);	
+		text( "PRESS TO RESTART", 0, height/2, 800, 400);	
+		fill(0);
+		textSize(18);	
+		text("Back", 50,50,100,50);
+		fill(255,0,0,90);
+		text("You died!!!", 0, height/2-90, 800, 90);
 	
-		if (keyCode == CONTROL)
+		if (keyIsPressed && Prompt.isLaunched == false)
 		{
 			menu_position = 2;
 			initialize_game() ;
@@ -298,9 +365,9 @@ function showGameScreen()
 {
 	background(game_background) ;
 	image(game_background, background_x, 0);
-	background_x -= 1;
+	background_x -= difficulty;
 	image(game_background, background_x+game_background.width, 0)
-	if(background_x == -(game_background.width))
+	if(background_x <= -(game_background.width))
 	{
 		background_x = 0;
 	}
@@ -375,7 +442,6 @@ function showGameScreen()
 			score = Math.floor(player_ninja.score);
 			
          Prompt.render('Type in your name:');
-		   console.log(name);
 			
 			menu_position = 5 ;
 			played_once = true;
@@ -444,6 +510,7 @@ function mousePressed()
 	if ( menu_position == 0 && mouseX > 0 && mouseX < canvas.width 
 		&& mouseY < canvas.height && mouseY > 0)
 	{
+		
 		menu_position = 1;
 	}
 	
@@ -500,11 +567,51 @@ function mousePressed()
 	}
 	else if (menu_position == 4)
 	{
-		if ( mouseX > 50 && mouseX < 150 && mouseY > 50 && mouseY < 100)
+		var levels_x = 42.5; 
+		var levels_y = height/3 - 70;
+		if ( mouseX > levels_x && mouseX < levels_x + 210 && mouseY > levels_y && mouseY < levels_y + 140)
+		{
+			game_background = game_backgrounds[0];
+			level_is_chosen = true;
+			press_up.play();
+		}
+		else if ( mouseX > levels_x*2 + 210  && mouseX < levels_x*2+210+210 && mouseY > levels_y && mouseY < levels_y + 140)
+		{
+			game_background = game_backgrounds[1];
+			level_is_chosen = true;
+			press_up.play();
+		}	
+		else if ( mouseX > levels_x*3 + 210+210  && mouseX < levels_x*3+210+210+210 && mouseY > levels_y && mouseY < levels_y + 140)
+		{		
+			game_background = game_backgrounds[2];
+			level_is_chosen = true;
+			press_up.play();
+		}	
+		else if ( mouseX > levels_x && mouseX < levels_x + 210 && mouseY > height/2 && mouseY < height/2 + 140)
+		{
+			game_background = game_backgrounds[3];
+			level_is_chosen = true;
+			press_up.play();
+		}	
+		else if ( mouseX > levels_x*2 + 210  && mouseX < levels_x*2+210+210 && mouseY > height/2 && mouseY < height/2 + 140)
+		{
+			game_background = game_backgrounds[4];
+			level_is_chosen = true;
+			press_up.play();
+		}	
+		else if ( mouseX > levels_x*3 + 210+210  && mouseX < levels_x*3+210+210+210 && mouseY > height/2 && mouseY < height/2 + 140)
+		{
+			game_background = game_backgrounds[5];
+			level_is_chosen = true;
+			press_up.play();
+		}
+		
+		else if ( mouseX > 50 && mouseX < 150 && mouseY > 50 && mouseY < 100) 
 		{
 			menu_position = 1;
 			press_down.play();
 		}
+		console.log(game_background);
 	}
 	else if (menu_position == 5)
 	{
