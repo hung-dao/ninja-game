@@ -158,7 +158,7 @@
                         <h3>Dair Baidauletov</h3>
                         <div class="icons"><a href="https://www.facebook.com/dair.baidauletov"><i class="fa fa-facebook-official"></i></a>
                             <a href="https://github.com/dairbuirabass"> <i class="fa fa-github"></i></a>
-                            <a href="mailto:dair.baidauletov@gmail.com.com"> <i class="fa fa-envelope"></i></a>
+                            <a href="mailto:dair.baidauletov@gmail.com"> <i class="fa fa-envelope"></i></a>
                         </div>
                     </figcaption>
                 </figure>
@@ -185,6 +185,27 @@
             </div>
         </div>
     </section>
+	
+	    <section class="panel credits" data-section-name="credits">
+   
+			   <div class="inner">
+            <div class="vertical-center">
+            	<h2>Credits</h2>
+					<h3>Special thanks to all people who unknowingly contributed to our project </h3>
+					<ul class="credits-list">
+						<li class="credits-list-li"><a class="credits-list-a" target="_blank" href="https://p5js.org">p5 Community </a>and its founder <a class="credits-list-a" target="_blank" href="http://lauren-	mccarthy.com/">Lauren McCarthy</a></li>
+						<li class="credits-list-li"><a class="credits-list-a" target="_blank" href="https://opengameart.org/users/dezrasdragons">DezrasDragon</a> from opengameart.org community for lovely Ninja animations</li>
+						<li class="credits-list-li"><a class="credits-list-a" target="_blank" href="https://opengameart.org/users/ansimuz">ansimuz</a> for breath-taking backgrounds</li>
+						<li class="credits-list-li"><a class="credits-list-a" target="_blank" href="https://opengameart.org/users/sacio">sacio</a> and <a class="credits-list-a" target="_blank" href="https://opengameart.org/users/kungfu4000">kungfu4000</a> for awesome game assets and animations</li>
+						<li class="credits-list-li">Special thanks to <a class="credits-list-a" target="_blank" href="https://opengameart.org">opengameart</a>community</li>
+						<li class="credits-list-li">Custom alert code is inspired by <a class="credits-list-a" target="_blank" href="http://www.developphp.com/video/JavaScript/Custom-Prompt-Box-Programming-Tutorial">developphp.com tutorials</a></li>
+						<li class="credits-list-li">If you want to download the soundtrack, feel free to email at <a class="credits-list-a" href="mailto:dair.baidauletov@gmail.com">dair.baidauletov@gmail.com</a></li>
+					</ul>
+            </div>
+        </div> 
+
+     
+        </section>
 </body>
 
 </html>

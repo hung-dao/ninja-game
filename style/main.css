@@ -79,6 +79,23 @@ p {
 	line-height:1;
 }
 
+.credits-list
+{
+	padding: 40px;
+	font-size: 2em;
+	line-height:1;
+}
+.credits-list-li
+{
+	font-size: 2em;
+	padding: 2px;
+}
+.credits-list-a
+{
+	color: darkolivegreen;
+}
+
+
 .vertical-center {
 	text-align:center;
 	width:100%;
