@@ -62,10 +62,33 @@ h2 {
 	font-family: 'Bungee Shade', cursive;
 	color: black;
 }
+h3 {
+	padding: 40px;
+	font-size:4em;
+	font-family: 'Bungee';
+	color: black;
+}
 p {
 	font-size: 2em;
 	line-height:1;
 }
+
+.credits-list
+{
+	padding: 40px;
+	font-size: 2em;
+	line-height:1;
+}
+.credits-list-li
+{
+	font-size: 2em;
+	padding: 2px;
+}
+.credits-list-a
+{
+	color: darkolivegreen;
+}
+
 
 .vertical-center {
 	text-align:center;
@@ -98,6 +121,10 @@ p {
 	background:hsl(200,60%,55%);
 }
 .about {
+	background:#e14456;
+	background:hsl(350,92%,59%);
+}
+.credits {
 	background:#e14456;
 	background:hsl(350,92%,59%);
 }

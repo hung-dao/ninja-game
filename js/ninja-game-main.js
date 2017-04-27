@@ -65,8 +65,13 @@ var press_up;
 var press_down;
 
 var font;
+
 function preload()
 {	
+	loading_face = loadImage('assets/loading-face.png');
+	
+	my_font = loadFont('assets/fonts/8-bit pusab.ttf');
+	
    menu_background = loadImage("assets/ninja.gif") ;
 	
 	game_backgrounds = [loadImage('assets/parallax-forest.png'), loadImage('assets/country-platform.png'),
@@ -107,8 +112,6 @@ function preload()
 	background_music_2 = loadSound('sounds/game_music_2.ogg');
 	background_music_3 = loadSound('sounds/game_music_3.ogg');
 	menu_music = loadSound('sounds/EXCELSIOR.ogg');	
-	
-	my_font = loadFont('assets/fonts/8-bit pusab.ttf');
 }
 
 function setup()
@@ -274,6 +277,7 @@ function showMenu()
 			animation(player_scared, 400, 420);
 			difficulty_text = "LAST SAMURAI...";
 		}
+		
 		var hard_btn = rect(width*3/4 - 180/2, height/2 - 60/2, 180, 60, 10);
 		fill(255);
 		noStroke();
@@ -300,9 +304,7 @@ function showMenu()
 		var current_y = height/3 - 70;
 		var chosen_level_number ;
 		for (var i = 0; i < 6; i ++)
-		{
-
-			
+		{	
 			levels.push(rect(current_x , current_y, 210, 140 ));
 			image(game_backgrounds[i], current_x, current_y, 210, 140);
 			if (game_background == game_backgrounds[i])
@@ -344,7 +346,7 @@ function showMenu()
 		fill(255);
 		var go_to_menu_btn = rect(50,50,100,50,10) ;
 		textSize(50);
-		text( "PRESS TO RESTART", 0, height/2, 800, 400);	
+		text( "PRESS ANY KEY TO RESTART", 0, height/2, 800, 400);	
 		fill(0);
 		textSize(18);	
 		text("Back", 50,50,100,50);

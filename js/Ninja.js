@@ -59,7 +59,7 @@ function Ninja()
 	{
 		if (this.health > 0)
 		{	
-			if (keyWentDown(87))
+			if (keyWentDown(87) || keyWentDown(32))
 			{
 				this.isjumping = true ;
 				this.isfalling = false;
@@ -99,11 +99,6 @@ function Ninja()
 			{
     			// move right
 				this.x += 5 ;
-			}
-			
-			if (keyIsDown(32))
-			{
-				this.health = 0;
 			}
 			
 			if (this.y + this.height < INITIAL_Y )
