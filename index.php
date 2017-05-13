@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Ninja Game</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-
+	 <meta property="og:image" content="assets/parralax-mountain.png" />
+	
     <!-- Jquery, Scrollify and p5 CDN -->
     <script src="https://code.jquery.com/jquery-1.11.1.min.js" integrity="sha256-VAvG3sHdS5LqTT+5A/aeq/bZGa/Uj04xKxY8KM/w9EE=" crossorigin="anonymous"></script>
     <script src=https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.14/jquery.scrollify.min.js></script>
@@ -15,7 +16,8 @@
     <link rel="stylesheet" href="style/main.css" />
     <link rel="stylesheet" href="style/profilecard.css" />
     <link rel="stylesheet" href="style/animate.css" />
-
+	 <link rel="shortcut icon" href="assets/sprites/jumpfall/superjump.png">
+	 <link rel="image_src" href="assets/parallax-mountain.png" / >
     <link rel="stylesheet" href="style/dialog.css" />
     <link href="https://fonts.googleapis.com/css?family=Bungee|Bungee+Shade|Roboto:400,400i" rel="stylesheet">
 
@@ -66,21 +68,32 @@
                         <th>Key</th>
                     </tr>
                     <tr>
-                        <td>Up</td>
-                        <td><b>W</b></td>
-                    </tr>
-                    <tr>
-                        <td>Down</td>
-                        <td><b>S</b></td>
-                    </tr>
-                    <tr>
-                        <td>Left</td>
-                        <td><b>A</b></td>
-                    </tr>
-                    <tr>
-                        <td>Right</td>
-                        <td><b>D</b></td>
-                    </tr>
+                        <td>Up, Down, Left, Right</td>
+                        <td><b>WASD</b></td>
+                   
+						 <tr>
+						 		<th>Game Object</th>
+							 	<th>Consequences</th>
+						 </tr>
+						 <tr>
+							 	<td><img src="assets/sprites/enemies/shuriken1.png"></td>
+								<td><b>Shuriken reduces your health by 5 points </b></td>
+						 </tr>				 
+						 <tr>
+							 	<td><img src="assets/sprites/enemies/kunai.png"></td>
+								<td><b>Kunai</b> reduces your health by 20 points</td>
+						 </tr>				 
+						 <tr>
+							 	<td><img src="assets/sprites/enemies/katana.png"></td>
+								<td><b>Katana</b> reduces your health by 50 points</td>
+						 </tr>						 <tr>
+							 	<td><img src="assets/sprites/pickups/coin1.png"</td>
+								<td><b>Coin</b> increases your score by 50 points</td>
+						 </tr>						
+						 <tr>
+							 	<td><img src="assets/sprites/pickups/heart.png"></td>
+								<td><b>Heart</b> increases your health by 10 points</td>
+						 </tr>
                 </table>
             </div>
         </div>
@@ -136,11 +149,12 @@
                 <h2>Credits</h2>
                 <h3>Special thanks to all people who unknowingly contributed to our project </h3>
           <ul class="credits-list">
-            <li class="credits-list-li"><a class="credits-list-a" target="_blank" href="https://p5js.org">p5 Community </a>and its founder <a class="credits-list-a" target="_blank" href="http://lauren-  mccarthy.com/">Lauren McCarthy</a></li>
+				<li class="credits-list-li">Thanks to all of our friends and teachers for all their support</li>
+            <li class="credits-list-li"><a class="credits-list-a" target="_blank" href="https://p5js.org">p5 Community </a>and its founder <a class="credits-list-a" target="_blank" href="http://lauren-mccarthy.com/">Lauren McCarthy</a></li>
             <li class="credits-list-li"><a class="credits-list-a" target="_blank" href="https://opengameart.org/users/dezrasdragons">DezrasDragon</a> from opengameart.org community for lovely Ninja animations</li>
             <li class="credits-list-li"><a class="credits-list-a" target="_blank" href="https://opengameart.org/users/ansimuz">ansimuz</a> for breath-taking backgrounds</li>
             <li class="credits-list-li"><a class="credits-list-a" target="_blank" href="https://opengameart.org/users/sacio">sacio</a> and <a class="credits-list-a" target="_blank" href="https://opengameart.org/users/kungfu4000">kungfu4000</a> for awesome game assets and animations</li>
-            <li class="credits-list-li">Special thanks to <a class="credits-list-a" target="_blank" href="https://opengameart.org">opengameart</a>community</li>
+            <li class="credits-list-li">Special thanks to <a class="credits-list-a" target="_blank" href="https://opengameart.org">opengameart </a>community</li>
             <li class="credits-list-li">Custom alert code is inspired by <a class="credits-list-a" target="_blank" href="http://www.developphp.com/video/JavaScript/Custom-Prompt-Box-Programming-Tutorial">developphp.com tutorials</a></li>
             <li class="credits-list-li">If you want to download the soundtrack, feel free to email at <a class="credits-list-a" href="mailto:dair.baidauletov@gmail.com">dair.baidauletov@gmail.com</a></li>
           </ul>

@@ -10,6 +10,9 @@ var current_screen ;
 var current_screen ;
 var played_once = false ;
 var level_is_chosen = false;
+var game_is_paused = false;
+var music_is_turned = true;
+var sfx_is_turned = true;
 var ratio_x = 1;
 var ratio_y = 1;
 var full_screen_button ;
@@ -69,6 +72,8 @@ var font;
 function preload()
 {	
 	loading_face = loadImage('assets/loading-face.png');
+	sound_icons = [loadImage('assets/sound-icon.png'), loadImage('assets/sound-icon-dead.png'),
+					   loadImage('assets/sfx-on.png'), loadImage('assets/sfx-off.png')];
 	
 	my_font = loadFont('assets/fonts/8-bit pusab.ttf');
 	
@@ -123,11 +128,41 @@ function setup()
 	
 	background_x = 0;
 	background_music_current = background_music_1 ;
-	background_music_current.setVolume(0.2);
 }
 
 function draw()
 {
+	if (!music_is_turned)
+	{
+		menu_music.setVolume(0.0);
+		background_music_current.setVolume(0.0);
+	}
+	else 
+	{
+		menu_music.setVolume(1.0);
+		background_music_current.setVolume(1.0);
+	}
+	
+	if (!sfx_is_turned)
+	{
+		hit_enemy.setVolume(0.0);
+		coin_audio.setVolume(0.0);
+		death_audio.setVolume(0.0);
+		health_audio.setVolume(0.0);
+		press_down.setVolume(0.0);
+		press_up.setVolume(0.0);
+	}
+	else
+	{	
+		hit_enemy.setVolume(1.0);
+		coin_audio.setVolume(1.0);
+		death_audio.setVolume(1.0);
+		health_audio.setVolume(1.0);
+		press_down.setVolume(1.0);
+		press_up.setVolume(1.0);
+		
+	}
+	
 	if (menu_position == 0)
 	{
 		background(0);
@@ -159,10 +194,19 @@ function draw()
 				animation_in_the_beginning = null;
 			}
 		}
+		
+		if (music_is_turned)
+		image( sound_icons[0], 700, 0);
+		else 
+		image( sound_icons[1], 700, 0);
+		
+		if (sfx_is_turned)
+		image ( sound_icons[2], 755, 10);
+		else
+		image ( sound_icons[3], 755, 10);
   	}
 	else
 	{
-	
 		menu_music.stop();
 		showGameScreen();
 	}
@@ -368,10 +412,35 @@ function showGameScreen()
 	background(game_background) ;
 	image(game_background, background_x, 0);
 	background_x -= difficulty;
-	image(game_background, background_x+game_background.width, 0)
+	image(game_background, background_x+game_background.width, 0);
 	if(background_x <= -(game_background.width))
 	{
 		background_x = 0;
+	}
+	
+	
+	
+	noStroke();
+	fill(180, 80);
+	var pause_btn = rect(650, 20, 100, 50, 30);
+	fill(0);
+	textFont(my_font);
+	textSize(12);	
+	text("Pause", 670,35,100,50);
+	
+	if (game_is_paused == true)
+	{
+		stroke(120, 80);
+		fill(180, 80);
+		var pause_window = rect(200, 150, 400, 300, 10);
+		var continue_btn = rect(250, 300, 300, 50, 10); 
+		var back_to_menu_btn = rect(250, 375, 300, 50, 10) ;
+		textSize(26);
+		fill(0, 96);
+		text("Game is paused", 250, 200, 350, 300);
+		textSize(14);
+		text("Continue", 250, 300, 300, 50);
+		text("Back to Menu", 250, 375, 300, 50);
 	}
 	
 	player_ninja.move() ;
@@ -537,6 +606,28 @@ function mousePressed()
 			menu_position = 4;
 			press_up.play();
 		}
+		else if ( mouseX > 700 && mouseX < 750 && mouseY > 0 && mouseY < 50)
+		{
+			if (music_is_turned)
+			music_is_turned = false;
+			else 
+			music_is_turned = true;
+		}		
+		else if ( mouseX > 750 && mouseX < 800 && mouseY > 0 && mouseY < 50)
+		{
+			if (sfx_is_turned)
+			sfx_is_turned = false;
+			else 
+			sfx_is_turned = true;
+		}
+	}
+	else if (menu_position == 2)
+	{
+		if ( mouseX > 650 && mouseX < 750 && mouseY > 20 && mouseY < 70 )
+		{
+			noLoop();
+			game_is_paused = true;
+		}
 	}
 	else if (menu_position == 3)
 	{
@@ -565,6 +656,20 @@ function mousePressed()
 		{
 			menu_position = 1;
 			press_down.play();
+		}
+		else if ( mouseX > 700 && mouseX < 750 && mouseY > 0 && mouseY < 50)
+		{
+			if (music_is_turned)
+			music_is_turned = false;
+			else 
+			music_is_turned = true;
+		}		
+		else if ( mouseX > 750 && mouseX < 800 && mouseY > 0 && mouseY < 50)
+		{
+			if (sfx_is_turned)
+			sfx_is_turned = false;
+			else 
+			sfx_is_turned = true;
 		}
 	}
 	else if (menu_position == 4)
@@ -607,13 +712,25 @@ function mousePressed()
 			level_is_chosen = true;
 			press_up.play();
 		}
-		
 		else if ( mouseX > 50 && mouseX < 150 && mouseY > 50 && mouseY < 100) 
 		{
 			menu_position = 1;
 			press_down.play();
 		}
-		console.log(game_background);
+		else if ( mouseX > 700 && mouseX < 750 && mouseY > 0 && mouseY < 50)
+		{
+			if (music_is_turned)
+			music_is_turned = false;
+			else 
+			music_is_turned = true;
+		}		
+		else if ( mouseX > 750 && mouseX < 800 && mouseY > 0 && mouseY < 50)
+		{
+			if (sfx_is_turned)
+			sfx_is_turned = false;
+			else 
+			sfx_is_turned = true;
+		}
 	}
 	else if (menu_position == 5)
 	{
@@ -621,6 +738,36 @@ function mousePressed()
 		{
 			menu_position = 1;
 			press_down.play();
+		}		
+		else if ( mouseX > 700 && mouseX < 750 && mouseY > 0 && mouseY < 50)
+		{
+			if (music_is_turned)
+			music_is_turned = false;
+			else 
+			music_is_turned = true;
+		}		
+		else if ( mouseX > 750 && mouseX < 800 && mouseY > 0 && mouseY < 50)
+		{
+			if (sfx_is_turned)
+			sfx_is_turned = false;
+			else 
+			sfx_is_turned = true;
 		}
+	}
+	
+	if (game_is_paused == true)
+	{
+		if (mouseX > 250 && mouseX < 550 && mouseY > 300 && mouseY < 350)
+			{
+				game_is_paused = false;
+				loop();
+			}
+		else if (mouseX > 250 && mouseX < 550 && mouseY > 375 && mouseY < 425)
+			{
+				game_is_paused = false;
+				menu_position = 1;
+				loop();
+				background_music_current.stop();
+			}
 	}
 }
