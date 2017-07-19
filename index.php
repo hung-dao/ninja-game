@@ -53,7 +53,7 @@
             <li><a href="#instruction"><span class="hover-text">Instructions</span></a></li>
             <li><a href="#play"><span class="hover-text">Play</span></a></li>
             <li><a href="#stats"><span class="hover-text">Stats</span></a></li>
-            <li><a href="#credits"><span class="hover-text">Credits</span></a></li>
+           
             <li><a href="#about"><span class="hover-text">About Us</span></a></li>
         </ul>
     </section>
@@ -143,21 +143,42 @@
         </div>
     </section>
 
-    <section class="panel credits" data-section-name="credits">
-        <div class="inner">
+   
+
+    <section class="panel about" data-section-name="about">
+        <div class="inner profiles">
             <div class="vertical-center">
-                <h2>Credits</h2>
-                <h3>Special thanks to all people who unknowingly contributed to our project </h3>
-          <ul class="credits-list">
-				<li class="credits-list-li">Thanks to all of our friends and teachers for all their support</li>
-            <li class="credits-list-li"><a class="credits-list-a" target="_blank" href="https://p5js.org">p5 Community </a>and its founder <a class="credits-list-a" target="_blank" href="http://lauren-mccarthy.com/">Lauren McCarthy</a></li>
-            <li class="credits-list-li"><a class="credits-list-a" target="_blank" href="https://opengameart.org/users/dezrasdragons">DezrasDragon</a> from opengameart.org community for lovely Ninja animations</li>
-            <li class="credits-list-li"><a class="credits-list-a" target="_blank" href="https://opengameart.org/users/ansimuz">ansimuz</a> for breath-taking backgrounds</li>
-            <li class="credits-list-li"><a class="credits-list-a" target="_blank" href="https://opengameart.org/users/sacio">sacio</a> and <a class="credits-list-a" target="_blank" href="https://opengameart.org/users/kungfu4000">kungfu4000</a> for awesome game assets and animations</li>
-            <li class="credits-list-li">Special thanks to <a class="credits-list-a" target="_blank" href="https://opengameart.org">opengameart </a>community</li>
-            <li class="credits-list-li">Custom alert code is inspired by <a class="credits-list-a" target="_blank" href="http://www.developphp.com/video/JavaScript/Custom-Prompt-Box-Programming-Tutorial">developphp.com tutorials</a></li>
-            <li class="credits-list-li">If you want to download the soundtrack, feel free to email at <a class="credits-list-a" href="mailto:dair.baidauletov@gmail.com">dair.baidauletov@gmail.com</a></li>
-          </ul>
+                <h2>About Us</h2>
+                <figure class="profileCard">
+                    <div class="profile-image"><img src="assets/profile/dair.jpg" alt="sample47" /></div>
+                    <figcaption>
+                        <h3>Dair Baidauletov</h3>
+                        <div class="icons"><a href="https://www.facebook.com/dair.baidauletov"><i class="fa fa-facebook-official"></i></a>
+                            <a href="https://github.com/dairbuirabass"> <i class="fa fa-github"></i></a>
+                            <a href="mailto:dair.baidauletov@gmail.com"> <i class="fa fa-envelope"></i></a>
+                        </div>
+                    </figcaption>
+                </figure>
+                <figure class="profileCard">
+                    <div class="profile-image"><img src="assets/profile/fayjus.jpg" alt="sample47" /></div>
+                    <figcaption>
+                        <h3>Fayjus Salehin</h3>
+                        <div class="icons"><a href="https://www.facebook.com/fayjusss"><i class="fa fa-facebook-official"></i></a>
+                            <a href="https://github.com/fayjusss"> <i class="fa fa-github"></i></a>
+                            <a href="mailto:fsalehin@live.com"> <i class="fa fa-envelope"></i></a>
+                        </div>
+                    </figcaption>
+                </figure>
+                <figure class="profileCard">
+                    <div class="profile-image"><img src="assets/profile/Hung.png" alt="sample47" /></div>
+                    <figcaption>
+                        <h3>Hung Dao</h3>
+                        <div class="icons"><a href="https://www.facebook.com/hung.dao.nt"><i class="fa fa-facebook-official"></i></a>
+                            <a href="https://github.com/hungntdao"> <i class="fa fa-github"></i></a>
+                            <a href="#about"> <i class="fa fa-envelope"></i></a>
+                        </div>
+                    </figcaption>
+                </figure>
             </div>
         </div>
     </section>
