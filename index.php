@@ -183,43 +183,7 @@
         </div>
     </section>
 
-    <section class="panel about" data-section-name="about">
-        <div class="inner profiles">
-            <div class="vertical-center">
-                <h2>About Us</h2>
-                <figure class="profileCard">
-                    <div class="profile-image"><img src="assets/profile/dair.jpg" alt="sample47" /></div>
-                    <figcaption>
-                        <h3>Dair Baidauletov</h3>
-                        <div class="icons"><a href="https://www.facebook.com/dair.baidauletov"><i class="fa fa-facebook-official"></i></a>
-                            <a href="https://github.com/dairbuirabass"> <i class="fa fa-github"></i></a>
-                            <a href="mailto:dair.baidauletov@gmail.com"> <i class="fa fa-envelope"></i></a>
-                        </div>
-                    </figcaption>
-                </figure>
-                <figure class="profileCard">
-                    <div class="profile-image"><img src="assets/profile/fayjus.jpg" alt="sample47" /></div>
-                    <figcaption>
-                        <h3>Fayjus Salehin</h3>
-                        <div class="icons"><a href="https://www.facebook.com/fayjusss"><i class="fa fa-facebook-official"></i></a>
-                            <a href="https://github.com/fayjusss"> <i class="fa fa-github"></i></a>
-                            <a href="mailto:fsalehin@live.com"> <i class="fa fa-envelope"></i></a>
-                        </div>
-                    </figcaption>
-                </figure>
-                <figure class="profileCard">
-                    <div class="profile-image"><img src="assets/profile/hung.jpg" alt="sample47" /></div>
-                    <figcaption>
-                        <h3>Hung Dao</h3>
-                        <div class="icons"><a href="https://www.facebook.com/hung.dao.nt"><i class="fa fa-facebook-official"></i></a>
-                            <a href="https://github.com/hungntdao"> <i class="fa fa-github"></i></a>
-                            <a href="#about"> <i class="fa fa-envelope"></i></a>
-                        </div>
-                    </figcaption>
-                </figure>
-            </div>
-        </div>
-    </section>
+    
 </body>
 
 </html>
