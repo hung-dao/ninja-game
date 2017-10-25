@@ -42,61 +42,19 @@
       <div class="inner">
             <div class="vertical-center">
                 <h1 class="animated fadeInDownBig">Ninja Game</h1>
-                <p>A simple web based 2D endless running game</p>
-                <p>made with <span class="fa fa-heart"></span> by a bunch of OAMK students as a first yeart project</p>
+                <p>A simple web game</p>
+                <p>made with <span class="fa fa-heart"></span> by a bunch of OAMK students</p>
+                <p>Press W, S, A, D to play</p>
                 <a href="#play" class="scroll"></a>
             </div>
         </div>
 
         <ul class="pagination">
             <li><a href="#home" class="active"><span class="hover-text">Home</span></a></li>
-            <li><a href="#instruction"><span class="hover-text">Instructions</span></a></li>
             <li><a href="#play"><span class="hover-text">Play</span></a></li>
             <li><a href="#stats"><span class="hover-text">Stats</span></a></li>
-           
             <li><a href="#about"><span class="hover-text">About Us</span></a></li>
         </ul>
-    </section>
-
-    <section class="panel instruction" data-section-name="instruction">
-        <div class="inner">
-            <div class="vertical-center">
-                <h2>Instructions</h2>
-                <table>
-                    <tr>
-                        <th>Movement</th>
-                        <th>Key</th>
-                    </tr>
-                    <tr>
-                        <td>Up, Down, Left, Right</td>
-                        <td><b>WASD</b></td>
-                   
-						 <tr>
-						 		<th>Game Object</th>
-							 	<th>Consequences</th>
-						 </tr>
-						 <tr>
-							 	<td><img src="assets/sprites/enemies/shuriken1.png"></td>
-								<td><b>Shuriken reduces your health by 5 points </b></td>
-						 </tr>				 
-						 <tr>
-							 	<td><img src="assets/sprites/enemies/kunai.png"></td>
-								<td><b>Kunai</b> reduces your health by 20 points</td>
-						 </tr>				 
-						 <tr>
-							 	<td><img src="assets/sprites/enemies/katana.png"></td>
-								<td><b>Katana</b> reduces your health by 50 points</td>
-						 </tr>						 <tr>
-							 	<td><img src="assets/sprites/pickups/coin1.png"</td>
-								<td><b>Coin</b> increases your score by 50 points</td>
-						 </tr>						
-						 <tr>
-							 	<td><img src="assets/sprites/pickups/heart.png"></td>
-								<td><b>Heart</b> increases your health by 10 points</td>
-						 </tr>
-                </table>
-            </div>
-        </div>
     </section>
 
     <section class="panel play" data-section-name="play">
