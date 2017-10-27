@@ -1,8 +1,14 @@
 <?php
+	// try
+	// {
+	//  $dsn = "mysql:host=localhost;dbname=highscores";
+	//  $db = new PDO ($dsn, "root", "sql");
+	//  //print ("Connected\n");
+	// }
 	try
 	{
 	 $dsn = "mysql:host=localhost;dbname=highscores";
-	 $db = new PDO ($dsn, "root", "sql");
+	 $db = new PDO ($dsn, "webuser", "webpass");
 	 //print ("Connected\n");
 	}
 	catch (PDOException $e)
@@ -12,4 +18,3 @@
 	 print ("Error message: " . $e->getMessage() . "\n");
 	}
 	?>
-

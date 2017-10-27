@@ -7,7 +7,7 @@
     <title>Ninja Game</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
 	 <meta property="og:image" content="assets/parralax-mountain.png" />
-	
+
     <!-- Jquery, Scrollify and p5 CDN -->
     <script src="https://code.jquery.com/jquery-1.11.1.min.js" integrity="sha256-VAvG3sHdS5LqTT+5A/aeq/bZGa/Uj04xKxY8KM/w9EE=" crossorigin="anonymous"></script>
     <script src=https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.14/jquery.scrollify.min.js></script>
@@ -70,7 +70,7 @@
                     <tr>
                         <td>Up, Down, Left, Right</td>
                         <td><b>WASD</b></td>
-                   
+
 						 <tr>
 						 		<th>Game Object</th>
 							 	<th>Consequences</th>
@@ -78,18 +78,18 @@
 						 <tr>
 							 	<td><img src="assets/sprites/enemies/shuriken1.png"></td>
 								<td><b>Shuriken reduces your health by 5 points </b></td>
-						 </tr>				 
+						 </tr>
 						 <tr>
 							 	<td><img src="assets/sprites/enemies/kunai.png"></td>
 								<td><b>Kunai</b> reduces your health by 20 points</td>
-						 </tr>				 
+						 </tr>
 						 <tr>
 							 	<td><img src="assets/sprites/enemies/katana.png"></td>
 								<td><b>Katana</b> reduces your health by 50 points</td>
 						 </tr>						 <tr>
 							 	<td><img src="assets/sprites/pickups/coin1.png"</td>
 								<td><b>Coin</b> increases your score by 50 points</td>
-						 </tr>						
+						 </tr>
 						 <tr>
 							 	<td><img src="assets/sprites/pickups/heart.png"></td>
 								<td><b>Heart</b> increases your health by 10 points</td>
@@ -147,9 +147,9 @@
         <div class="inner">
             <div class="vertical-center">
                 <h2>Credits</h2>
-                <h3>Special thanks to all people who unknowingly contributed to our project </h3>
+                <h3 style="font-size: 24px;">Special thanks to all people who unknowingly contributed to our project </h3>
           <ul class="credits-list">
-				<li class="credits-list-li">Thanks to all of our friends and teachers for all their support</li>
+				    <li class="credits-list-li">Thanks to all of our friends and teachers for all their support</li>
             <li class="credits-list-li"><a class="credits-list-a" target="_blank" href="https://p5js.org">p5 Community </a>and its founder <a class="credits-list-a" target="_blank" href="http://lauren-mccarthy.com/">Lauren McCarthy</a></li>
             <li class="credits-list-li"><a class="credits-list-a" target="_blank" href="https://opengameart.org/users/dezrasdragons">DezrasDragon</a> from opengameart.org community for lovely Ninja animations</li>
             <li class="credits-list-li"><a class="credits-list-a" target="_blank" href="https://opengameart.org/users/ansimuz">ansimuz</a> for breath-taking backgrounds</li>
