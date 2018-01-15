@@ -1,4 +1,6 @@
 # ninja-game
+https://www.students.oamk.fi/~t6bada00/ninja_game/#play
+
 A web game made by a team of three students.
 
 Using JavaScript, PHP and MySQL.
