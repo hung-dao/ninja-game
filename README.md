@@ -1,6 +1,5 @@
 # Ninja Game
-
-## Introduction 
+ 
 A web game made by a team of three students.
 
 ## Link to the game: 
