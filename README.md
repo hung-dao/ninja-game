@@ -11,4 +11,4 @@ A web game made by a team of three students.
 ## Technologies
 Using JavaScript, PHP and MySQL. 
 
-Also using P5, a JavaScript library which makes it easier to work with the drawings and graphics: https://p5js.org/
+Also using P5, a JavaScript library which makes it easier to work with drawings and graphics: https://p5js.org/
